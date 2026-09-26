@@ -1,0 +1,376 @@
+/* 本文件为代码块样式设置 - 参考 Bloom 主题风格 */
+/* ================================================================= */
+
+
+/* 行内代码 */
+#write code {
+    font-family: var(--code-block-text-font), monospace;
+    font-size: 0.88em;
+    padding: 0.2em 0.45em;
+    border-radius: 7px;
+    background: rgba(129, 178, 154, 0.14);
+    color: #81b29a;
+    font-weight: 600;
+    border: 1px solid rgba(129, 178, 154, 0.32);
+}
+
+/* 代码块整体 - Mac 窗口风格 */
+#write pre.md-fences,
+#write pre[mdtype="fences"],
+#write .md-fences {
+    background: var(--code-block-bg-color);
+    color: var(--code-block-text-color, var(--writeArea-text-color));
+    border: 1px solid rgba(129, 178, 154, 0.18);
+    border-radius: 16px;
+    padding: 2.8em 1.4em 1.2em !important;
+    margin: 2em 0;
+    overflow: auto;
+    box-shadow: var(--code-block-shadow);
+    font-family: var(--code-block-text-font), monospace;
+    font-size: 14.5px;
+    line-height: 1.6;
+    position: relative;
+    tab-size: 4 !important;
+    -moz-tab-size: 4 !important;
+}
+
+/* CodeMirror 容器定位 */
+#write pre.md-fences .CodeMirror,
+#write pre[mdtype="fences"] .CodeMirror,
+#write .md-fences .CodeMirror {
+    position: relative;
+    margin-top: 0;
+}
+
+/* 代码行容器 - 确保正确定位 */
+#write pre.md-fences .CodeMirror-code,
+#write pre[mdtype="fences"] .CodeMirror-code,
+#write .md-fences .CodeMirror-code {
+    position: relative;
+}
+
+/* 代码行 */
+#write pre.md-fences .CodeMirror-code pre,
+#write pre[mdtype="fences"] .CodeMirror-code pre,
+#write .md-fences .CodeMirror-code pre {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+/* Mac-style Window Controls */
+#write pre.md-fences::before,
+#write pre[mdtype="fences"]::before,
+#write .md-fences::before {
+    content: "";
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--code-block-topBar-left-redDot-color, #ff5f5a);
+    box-shadow:
+    18px 0 0 var(--code-block-topBar-left-yellowDot-color, #ffbe2e),
+    36px 0 0 var(--code-block-topBar-left-greenDot-color, #2aca44);
+    z-index: 2;
+}
+
+/* 代码块内 code 元素 */
+#write pre.md-fences code,
+#write pre[mdtype="fences"] code,
+#write .md-fences code {
+    background: transparent;
+    padding: 0;
+    color: inherit;
+    font-weight: normal;
+}
+
+/* 代码块内部背景透明 */
+#write pre.md-fences .CodeMirror,
+#write pre.md-fences .CodeMirror-scroll,
+#write pre.md-fences .CodeMirror-gutters,
+#write pre[mdtype="fences"] .CodeMirror,
+#write pre[mdtype="fences"] .CodeMirror-scroll,
+#write pre[mdtype="fences"] .CodeMirror-gutters,
+#write .md-fences .CodeMirror,
+#write .md-fences .CodeMirror-scroll,
+#write .md-fences .CodeMirror-gutters {
+    background: transparent;
+    color: inherit;
+}
+
+/* 代码块行号 */
+#write pre.md-fences .CodeMirror-linenumber,
+#write pre[mdtype="fences"] .CodeMirror-linenumber,
+#write .md-fences .CodeMirror-linenumber {
+    color: var(--code-block-line-number-color, rgba(0, 0, 0, 0.45));
+    font-family: var(--code-block-text-font), monospace;
+    font-size: var(--code-block-text-size);
+}
+
+/* 代码块光标 */
+#write pre.md-fences .CodeMirror-cursor,
+#write pre[mdtype="fences"] .CodeMirror-cursor,
+#write .md-fences .CodeMirror-cursor {
+    border-left: 2px solid rgba(129, 178, 154, 0.7);
+}
+
+/* 防止嵌套多层 pre/code 造成重复背景 */
+#write pre.md-fences pre,
+#write pre.md-fences pre code,
+#write pre.md-fences .cm-s-inner .CodeMirror-lines,
+#write pre[mdtype="fences"] pre,
+#write pre[mdtype="fences"] pre code,
+#write pre[mdtype="fences"] .cm-s-inner .CodeMirror-lines,
+#write .md-fences pre,
+#write .md-fences pre code,
+#write .md-fences .cm-s-inner .CodeMirror-lines {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+#write pre.md-fences pre,
+#write pre[mdtype="fences"] pre,
+#write .md-fences pre {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#write pre.md-fences .CodeMirror-scroll,
+#write pre[mdtype="fences"] .CodeMirror-scroll,
+#write .md-fences .CodeMirror-scroll {
+    overflow: visible !important;
+}
+
+/* CodeMirror 内部 sizer - 确保正确边距 */
+#write pre.md-fences .CodeMirror-sizer,
+#write pre[mdtype="fences"] .CodeMirror-sizer,
+#write .md-fences .CodeMirror-sizer {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+/* CodeMirror 行容器 - 确保正确的内边距 */
+#write pre.md-fences .CodeMirror-lines,
+#write pre[mdtype="fences"] .CodeMirror-lines,
+#write .md-fences .CodeMirror-lines {
+    padding: 0.6em 0 !important;
+}
+
+/* Code Syntax Highlighting */
+#write pre.md-fences .cm-s-inner .cm-comment,
+#write pre[mdtype="fences"] .cm-s-inner .cm-comment,
+#write .md-fences .cm-s-inner .cm-comment {
+    color: rgba(120, 130, 130, 0.55);
+}
+
+#write pre.md-fences .cm-s-inner .cm-keyword,
+#write pre[mdtype="fences"] .cm-s-inner .cm-keyword,
+#write .md-fences .cm-s-inner .cm-keyword {
+    color: #4a6fa5;
+    font-weight: 700;
+}
+
+#write pre.md-fences .cm-s-inner .cm-string,
+#write pre[mdtype="fences"] .cm-s-inner .cm-string,
+#write .md-fences .cm-s-inner .cm-string {
+    color: #5c8a6e;
+}
+
+#write pre.md-fences .cm-s-inner .cm-number,
+#write pre[mdtype="fences"] .cm-s-inner .cm-number,
+#write .md-fences .cm-s-inner .cm-number {
+    color: #c47f3c;
+}
+
+#write pre.md-fences .cm-s-inner .cm-def,
+#write pre[mdtype="fences"] .cm-s-inner .cm-def,
+#write .md-fences .cm-s-inner .cm-def {
+    color: #457b9d;
+}
+
+#write pre.md-fences .cm-s-inner .cm-variable,
+#write pre[mdtype="fences"] .cm-s-inner .cm-variable,
+#write .md-fences .cm-s-inner .cm-variable {
+    color: inherit;
+}
+
+#write pre.md-fences .cm-s-inner .cm-property,
+#write pre[mdtype="fences"] .cm-s-inner .cm-property,
+#write .md-fences .cm-s-inner .cm-property {
+    color: #457b9d;
+}
+
+#write pre.md-fences .cm-s-inner .cm-operator,
+#write pre[mdtype="fences"] .cm-s-inner .cm-operator,
+#write .md-fences .cm-s-inner .cm-operator {
+    color: inherit;
+}
+
+/* 代码块工具栏 */
+#write pre.has-toolbar .code-toolbar {
+    position: absolute;
+    top: 10px;
+    left: 84px;
+    right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    z-index: 3;
+    pointer-events: none;
+}
+
+#write pre.has-toolbar .code-lang {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+#write pre.has-toolbar .code-copy-btn {
+    pointer-events: auto;
+    appearance: none;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+#write pre.has-toolbar .code-copy-btn:hover {
+    transform: translateY(-1px);
+    border-color: rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Typora built-in code toolbar */
+#write pre.md-fences .code-tooltip,
+#write pre[mdtype="fences"] .code-tooltip,
+#write .md-fences .code-tooltip,
+#write [mdtype="fences"] .code-tooltip {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    bottom: auto;
+    left: auto;
+    z-index: 4;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    transform: translateY(-2px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    pointer-events: none;
+    float: none !important;
+    padding: 0;
+    min-width: 0;
+    height: auto;
+    background: transparent;
+    box-shadow: none;
+}
+
+#write pre.md-fences:hover .code-tooltip,
+#write pre[mdtype="fences"]:hover .code-tooltip,
+#write .md-fences:hover .code-tooltip,
+#write [mdtype="fences"]:hover .code-tooltip,
+#write pre.md-fences:focus-within .code-tooltip,
+#write pre[mdtype="fences"]:focus-within .code-tooltip,
+#write .md-fences:focus-within .code-tooltip,
+#write [mdtype="fences"]:focus-within .code-tooltip {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+#write pre.md-fences .code-tooltip-content,
+#write pre[mdtype="fences"] .code-tooltip-content,
+#write .md-fences .code-tooltip-content,
+#write [mdtype="fences"] .code-tooltip-content {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(129, 178, 154, 0.2);
+    background: rgba(255, 255, 255, 0.7);
+    color: rgba(0, 0, 0, 0.8);
+    line-height: 1;
+}
+
+#write pre.md-fences .code-tooltip a,
+#write pre.md-fences .code-tooltip button,
+#write pre[mdtype="fences"] .code-tooltip a,
+#write pre[mdtype="fences"] .code-tooltip button,
+#write .md-fences .code-tooltip a,
+#write .md-fences .code-tooltip button,
+#write [mdtype="fences"] .code-tooltip a,
+#write [mdtype="fences"] .code-tooltip button {
+    pointer-events: auto;
+    appearance: none;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    line-height: 1;
+    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+#write pre.md-fences .code-tooltip a:hover,
+#write pre.md-fences .code-tooltip button:hover,
+#write pre[mdtype="fences"] .code-tooltip a:hover,
+#write pre[mdtype="fences"] .code-tooltip button:hover,
+#write .md-fences .code-tooltip a:hover,
+#write .md-fences .code-tooltip button:hover,
+#write [mdtype="fences"] .code-tooltip a:hover,
+#write [mdtype="fences"] .code-tooltip button:hover {
+    transform: translateY(-1px);
+    border-color: rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* 语言候选框 */
+.auto-suggest-container {
+    font-family: var(--code-block-text-font), monospace;
+    width: var(--code-lang-input-selection-box-width);
+    background-color: var(--code-lang-input-selection-box-bg-color);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    margin: 5px 0;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.auto-suggest-container.ty-show {
+    max-height: var(--code-lang-selection-box-max-height) !important;
+}
+
+.ty-cm-lang-input:empty:after {
+    content: attr(placeholder);
+    color: var(--code-lang-input-box-prompt-text-color);
+}
+
+.auto-suggest-container ul {
+    font-family: var(--code-block-text-font), monospace;
+    padding: 4px;
+    font-size: var(--code-lang-selection-box-text-size);
+}
+
+.auto-suggest-container :is(li.active, li:hover) {
+    color: var(--hover-lang-selection-box-li-text-color) !important;
+    background-color: var(--hover-lang-selection-box-li-bg-color) !important;
+    border-radius: 6px;
+}

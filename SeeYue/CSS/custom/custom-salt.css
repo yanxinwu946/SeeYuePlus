@@ -1,0 +1,21 @@
+/* 本文件为用户自定义 See Yue Salt 主题代码的存放处 */
+
+/* ==================== 编辑区网格线效果 ==================== */
+#write {
+    position: relative;
+}
+
+#write::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(rgba(99, 102, 241, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 102, 241, 0.08) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: 0;
+}

@@ -1,0 +1,30 @@
+/* 本文件为代码块编程语言设置（不使用顶栏） */
+/* ================================================================= */
+
+
+/* 代码语言显示【右侧】 */
+#write pre::after {
+    font-family: "Monaco", serif;
+    font-weight: bolder;
+    font-size: var(--code-block-right-program-lang-text-size);
+    /* 三套配色的语言字号不一样，行高定死，top 才对得上左上角的圆点 */
+    line-height: 1;
+    letter-spacing: 1px;
+    color: var(--code-block-right-program-lang-text-color);
+    position: absolute;
+    top: var(--code-block-right-program-lang-top-position);
+    right: var(--code-block-right-program-lang-right-position);
+    z-index: 99;
+}
+
+#write pre.md-fences {
+    /* padding 由 code-block.css 控制，这里不再覆盖 */
+}
+
+.md-fences + .md-fences {
+    margin-top: 2rem !important;
+}
+
+#write .code-tooltip {
+    top: 14px;
+}

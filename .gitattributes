@@ -1,0 +1,3 @@
+# 脚本必须存成 LF：CRLF 会让 sh / make 报 "$'\r': command not found"
+*.sh text eol=lf
+Makefile text eol=lf

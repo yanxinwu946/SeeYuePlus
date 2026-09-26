@@ -1,0 +1,49 @@
+/* 本文件为字体引用设置 */
+/* ================================================================= */
+
+
+/* ——————————————————————————————— 霞鹜文楷 ——————————————————————————————— */
+@font-face {
+    font-family: "霞鹜文楷";
+    src: local("LXGW WenKai"),
+         local("霞鹜文楷"),
+         local("LXGWWenKai-Regular"),
+         url("../Fonts/common-fonts/LXGWWenKai-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-display: swap;
+}
+
+/* 霞鹜文楷无 Bold，Medium 即最粗一档，声明成 700 */
+@font-face {
+    font-family: "霞鹜文楷";
+    src: local("LXGW WenKai Medium"),
+         local("霞鹜文楷 Medium"),
+         local("LXGWWenKai-Medium"),
+         url("../Fonts/common-fonts/LXGWWenKai-Medium.woff2") format("woff2");
+    font-weight: 700;
+    font-display: swap;
+}
+
+/* ——————————————————————————————— 图标字体 ——————————————————————————————— */
+/* 字体图标 */
+@font-face {
+    font-family: "iconfont";
+    src: url("../Fonts/icon_font/iconfont.woff2") format("woff2");
+    font-display: swap;
+}
+
+/* H1 → H6 标题等级提示符号 */
+@font-face {
+    font-family: "remixicon";
+    src: url("../Fonts/icon_font/remixicon.woff2") format("woff2");
+    font-display: swap;
+}
+
+/* 图标样式类 */
+.iconfont {
+    font-family: "iconfont", serif !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

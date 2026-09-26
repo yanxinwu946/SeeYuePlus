@@ -1,0 +1,19 @@
+/* 全局字体分配，字体本体见 fonts.css */
+/* ================================================================= */
+
+
+/* 界面外壳：侧边栏、悬浮提示、弹出菜单、底部栏等 */
+html :is(#file-library, #outline-content, #outline-content .outline-item-active),
+.ty-tooltip,
+#footer-word-count-info td:nth-child(1),
+#spell-check-panel :is(.ty-lang-control, .ty-lang-list),
+.modal-content,
+.show-footer footer.ty-footer,
+.typora-node.pin-outline:not(.megamenu-opened):not(.typora-sourceview-on) footer.ty-footer {
+    font-family: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif !important;
+}
+
+/* 行内代码 */
+#write :is(code, tt) {
+    font-family: var(--code-block-text-font), monospace !important;
+}

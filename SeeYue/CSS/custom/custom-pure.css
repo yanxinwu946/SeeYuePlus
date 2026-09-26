@@ -1,0 +1,107 @@
+/* 本文件为用户自定义 See Yue Pure 主题代码的存放处 */
+
+/* ==================== 毛玻璃效果增强 ==================== */
+
+/* 修复侧边栏颜色 */
+#typora-sidebar {
+    background-color: transparent !important;
+    color: #333 !important;
+}
+
+/* 侧边栏文件列表 */
+.file-list-item,
+.file-node-content {
+    color: #333 !important;
+}
+
+/* 侧边栏文件列表悬停效果 */
+.file-list-item:hover,
+.file-node-content:hover {
+    background-color: rgba(94, 129, 172, 0.15) !important;
+}
+
+/* 侧边栏选中项 */
+.file-list-item.active,
+.file-node-content.active {
+    background-color: rgba(94, 129, 172, 0.25) !important;
+    color: #1677ff !important;
+}
+
+/* 侧边栏大纲 */
+.outline-content,
+.outline-item {
+    color: #333 !important;
+}
+
+/* 侧边栏标题 */
+.sidebar-footer,
+.file-tree-header {
+    background-color: transparent !important;
+    color: #333 !important;
+}
+
+/* 修复侧边栏文件重命名输入框颜色问题 */
+#file-library-tree input,
+#file-library-list input,
+.file-node-input,
+.file-tree-node input,
+.file-list-item input {
+    color: #333 !important;
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    -webkit-text-fill-color: #333 !important;
+}
+
+#file-library-tree input:focus,
+#file-library-list input:focus,
+.file-node-input:focus,
+.file-tree-node input:focus,
+.file-list-item input:focus {
+    color: #000 !important;
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    -webkit-text-fill-color: #000 !important;
+}
+
+/* ==================== 底部栏液态玻璃 ==================== */
+footer.ty-footer {
+    background: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* ==================== 弹出菜单液态玻璃 ==================== */
+.ty-popup,
+.modal-dialog {
+    background: rgba(255, 255, 255, 0.5) !important;
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(100, 110, 140, 0.12), inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
+}
+
+/* ==================== 右键菜单液态玻璃 ==================== */
+#context-menu {
+    background: rgba(255, 255, 255, 0.45) !important;
+}
+
+/* ==================== 搜索面板液态玻璃 ==================== */
+#file-library-search-panel {
+    background: rgba(255, 255, 255, 0.45) !important;
+}
+
+/* ==================== 编辑区网格线效果 ==================== */
+#write {
+    position: relative;
+}
+
+#write::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(rgba(99, 102, 241, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 102, 241, 0.08) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: 0;
+}

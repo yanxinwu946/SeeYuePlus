@@ -1,0 +1,178 @@
+/* 本文件为导出 PDF 设置 */
+/* ================================================================= */
+
+
+/* ——————————————————————————————— 页面 ——————————————————————————————— */
+/* @page 的 background 会铺满整张纸，含页边距区 */
+@page {
+    margin: var(--pdf-page-margin, 14mm 12mm) !important;
+    background: var(--pdf-page-bg-color, #fff);
+}
+
+/* 首页不加底色 */
+@page :first {
+    background: var(--pdf-first-page-bg-color, #fff);
+}
+
+/* ——————————————————————————————— 导出设置 ——————————————————————————————— */
+@media print {
+
+    /* 底色由 @page 负责，根元素背景会把首页正文框也染色 */
+    html {
+    background: transparent !important;
+    background-image: none !important;
+    }
+
+    html,
+    body,
+    .typora-export * {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+    }
+
+    content,
+    .on-focus-mode content {
+    background-color: transparent !important;
+    }
+
+    /* 正文区撑满页宽，去掉玻璃卡片的宽度限制与装饰 */
+    #write {
+    max-width: none !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    }
+
+    #write::after,
+    #write::before {
+    display: none !important;
+    }
+}
+
+/* ——————————————————————————————— 断页约束 ——————————————————————————————— */
+@media print {
+
+    /* 标题不拆行，且不与后文分离 */
+    :is(h1, h2, h3, h4, h5, h6) {
+    break-inside: avoid;
+    break-after: avoid;
+    }
+
+    /* 原子单元，整体不拆 */
+    :is(blockquote, img, li, tr) {
+    break-inside: avoid;
+    }
+
+    /* 不在页首页尾留下单行孤行 */
+    :is(p, blockquote, ul, ol, dl) {
+    orphans: 2;
+    widows: 2;
+    }
+
+    /* 表格与长代码块允许断开。它们天然可能超过一页，硬加 break-inside: avoid
+       只会被整体推到下一页、留下一整页空白，到下一页照样要断。
+       表格的表头会随页重复，断开无损失。
+       注意必须显式放行 figure.md-table-fig，Typora 把表格包在 figure 里。 */
+    :is(table, figure.md-table-fig, pre) {
+    break-inside: auto;
+    }
+
+    /* 表格铺满正文宽，不再沿用屏幕上的「按内容自适应」 */
+    :is(figure, .md-table-fig) {
+    width: auto !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    }
+
+    table {
+    width: 100%;
+    }
+
+    thead {
+    display: table-header-group;
+    }
+
+    pre {
+    word-wrap: break-word;
+    }
+}
+
+/* ——————————————————————————————— 元素微调 ——————————————————————————————— */
+@media print {
+
+    /* 引用块去掉底色，图标与标题前色块保留 */
+    #write blockquote {
+    background-color: transparent !important;
+    }
+
+    /* 标题等级徽标是编辑辅助，不进成品 PDF；色块保留 */
+    #write > :is(h2, h3, h4, h5, h6)::after {
+    display: none !important;
+    }
+
+    #write img {
+    padding: 0 auto !important;
+    margin: 0 auto !important;
+    border: none !important;
+    }
+
+    .footnotes-area {
+    font-size: .85rem;
+    font-family: "霞鹜文楷", serif;
+    color: #777 !important;
+    line-height: 1.5;
+    }
+
+    .footnotes-area hr {
+    margin-top: 0 !important;
+    margin-bottom: 10px !important;
+    }
+
+    /* 目录：底色铺满整块，而非只有 Contents 那一行 */
+    #write .md-toc {
+    margin: 20px 0;
+    box-shadow: none;
+    padding: 35px 0 20px 0;
+    background-color: var(--pdf-toc-bg-color, rgba(57, 108, 175, .15)) !important;
+    break-after: var(--pdf-toc-break, page);
+    }
+
+    /* 底色已在整块上，标题行不再单独加，避免叠加出深一块 */
+    #write .md-toc::before {
+    width: 100%;
+    background-color: transparent !important;
+    padding: 6px !important;
+    }
+
+    #write :is(.md-toc-h1, .md-toc-h2, .md-toc-h3, .md-toc-h4, .md-toc-h5, .md-toc-h6) .md-toc-inner,
+    #write :is(.md-toc-h1, .md-toc-h2, .md-toc-h3, .md-toc-h4, .md-toc-h5, .md-toc-h6):hover .md-toc-inner {
+    border-right: none !important;
+    }
+
+    span.md-toc-item.md-toc-h1 a.md-toc-inner span {
+    border-left: var(--contents-h1-tab-space);
+    }
+
+    /* 代码块 */
+    pre div.CodeMirror-scroll,
+    #write pre div.CodeMirror-scroll {
+    padding-bottom: 4px !important;
+    }
+
+    #write .CodeMirror-gutters {
+    border-width: 2px !important;
+    height: 105% !important;
+    }
+
+    #write a[alt|=badge] {
+    position: relative;
+    display: initial !important;
+    }
+}

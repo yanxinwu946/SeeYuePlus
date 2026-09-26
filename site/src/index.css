@@ -1,0 +1,755 @@
+@import 'tailwindcss';
+
+/* SeeYue Plus · 设计令牌 · 取值全部来自主题本体 CSS，保证宣传页与真实观感一致 */
+@theme {
+  /* 霞鹜文楷：与主题内置字体同源。CDN 走 unicode-range 分片，只下载用到的字形 */
+  --font-display: 'LXGW WenKai Screen', 'LXGW WenKai Screen R', 'LXGW WenKai', '霞鹜文楷',
+    'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', serif;
+  --font-sans: 'Inter', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SFMono-Regular', 'Cascadia Code', Consolas, monospace;
+
+  /* 主题色 --theme-color-0x */
+  --color-ember-300: #ffa06b;
+  --color-ember-400: #f87759;
+  --color-ember-500: #e96900;
+  --color-ember-600: #c2570a;
+  --color-azure-300: #a9c4e4;
+  --color-azure-400: #7c9dca;
+  --color-azure-500: #428bca;
+  --color-azure-600: #5e81ac;
+  --color-clay-400: #e07a5f;
+  --color-moss-400: #81b29a;
+
+  /* 界面底色（Nord 系） */
+  --color-ink-950: #070a0f;
+  --color-ink-900: #0a0d13;
+  --color-ink-850: #0f131b;
+  --color-ink-800: #151a24;
+  --color-ink-700: #1d1f23;
+  --color-nord-900: #2e3440;
+  --color-nord-800: #3b4252;
+
+  --color-mist-100: #eceff4;
+  --color-mist-300: #c8d0dd;
+  --color-mist-500: #9aa6b8;
+  --color-mist-600: #6f7c90;
+
+  --shadow-glass: 0 4px 24px rgba(6, 10, 20, 0.35), 0 12px 48px rgba(6, 10, 20, 0.28);
+  --shadow-lift: 0 18px 60px -12px rgba(6, 10, 20, 0.6);
+
+  --ease-silk: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* 基础层 */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-ink-950);
+    color: var(--color-mist-300);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-ember-400) 42%, transparent);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ember-400);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* 滚动条 —— 与主题的滚动条风格呼应 */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--color-mist-600) 45%, transparent);
+    border-radius: 99px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in srgb, var(--color-ember-400) 65%, transparent);
+    background-clip: content-box;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+/* 氛围层：极光 / 噪点 / 网格 */
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.aurora__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.5;
+  will-change: transform;
+}
+
+.aurora__blob--ember {
+  width: 46vw;
+  height: 46vw;
+  min-width: 340px;
+  min-height: 340px;
+  top: -14vw;
+  left: -8vw;
+  background: radial-gradient(circle, rgba(233, 105, 0, 0.55), transparent 68%);
+  animation: drift-a 26s var(--ease-silk) infinite alternate;
+}
+
+.aurora__blob--azure {
+  width: 52vw;
+  height: 52vw;
+  min-width: 380px;
+  min-height: 380px;
+  top: -10vw;
+  right: -14vw;
+  background: radial-gradient(circle, rgba(66, 139, 202, 0.5), transparent 68%);
+  animation: drift-b 32s var(--ease-silk) infinite alternate;
+}
+
+.aurora__blob--clay {
+  width: 40vw;
+  height: 40vw;
+  min-width: 300px;
+  min-height: 300px;
+  bottom: -18vw;
+  left: 26vw;
+  background: radial-gradient(circle, rgba(224, 122, 95, 0.34), transparent 70%);
+  animation: drift-c 38s var(--ease-silk) infinite alternate;
+}
+
+@keyframes drift-a {
+  to {
+    transform: translate3d(6vw, 8vh, 0) scale(1.15);
+  }
+}
+@keyframes drift-b {
+  to {
+    transform: translate3d(-8vw, 6vh, 0) scale(1.1);
+  }
+}
+@keyframes drift-c {
+  to {
+    transform: translate3d(4vw, -6vh, 0) scale(1.2);
+  }
+}
+
+/* 颗粒噪点，压住渐变的塑料感 */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* 细网格，给极光一点秩序 */
+.grid-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+  background-size: 68px 68px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 20%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 20%, transparent 78%);
+}
+
+/* 玻璃面板 —— 呼应主题的液态玻璃。
+   别在这里写 position：这段不在 Tailwind 的 layer 里，会盖掉 utilities 的 fixed */
+.glass {
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.075) 0%,
+    rgba(255, 255, 255, 0.032) 42%,
+    rgba(255, 255, 255, 0.018) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.11),
+    inset 1px 0 0 0 rgba(255, 255, 255, 0.05),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.22),
+    var(--shadow-glass);
+}
+
+.glass--hover {
+  transition:
+    transform 0.5s var(--ease-silk),
+    border-color 0.5s var(--ease-silk),
+    box-shadow 0.5s var(--ease-silk);
+}
+.glass--hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(248, 119, 89, 0.32);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.16),
+    var(--shadow-lift);
+}
+
+/* 卡片顶部的流光描边（::before 要靠这里定位） */
+.hairline {
+  position: relative;
+}
+.hairline::before {
+  content: '';
+  position: absolute;
+  inset-inline: 12%;
+  top: -1px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(248, 119, 89, 0.75),
+    rgba(124, 157, 202, 0.6),
+    transparent
+  );
+  opacity: 0.7;
+}
+
+/* 排版 */
+.display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, #ffd7a8 0%, var(--color-ember-400) 34%, var(--color-azure-300) 78%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  /* 渐变字填充是透明的，描边必须显式给色，否则 currentColor 会解析成 transparent */
+  -webkit-text-stroke: 0.014em rgba(255, 214, 178, 0.34);
+}
+
+/* 中文标题靠描边补足字重，与主题 headline.css 同款处理 */
+.stroke-fix {
+  -webkit-text-stroke: 0.018em currentColor;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-ember-300) 82%, var(--color-mist-500));
+}
+
+/* 按钮 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 999px;
+  font-size: 0.94rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.35s var(--ease-silk);
+  white-space: nowrap;
+}
+
+.btn--primary {
+  color: #fff;
+  background: linear-gradient(135deg, var(--color-ember-500), var(--color-ember-400) 55%, #d95f3d);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 10px 30px -8px rgba(233, 105, 0, 0.65);
+}
+.btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.34),
+    0 18px 42px -10px rgba(233, 105, 0, 0.8);
+}
+
+.btn--ghost {
+  color: var(--color-mist-100);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.btn--ghost:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(248, 119, 89, 0.45);
+}
+
+/* 滚动进场 */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.85s var(--ease-silk),
+    transform 0.85s var(--ease-silk);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Typora 窗口模拟 —— 全站主角 · 三套配色的令牌逐一取自 configs/*-config.css */
+.mock {
+  --mock-app-bg: #f0f4f8;
+  --mock-app-tint: radial-gradient(ellipse 1200px 800px at 15% 8%, rgba(94, 129, 172, 0.14), transparent 70%),
+    radial-gradient(ellipse 1000px 700px at 88% 82%, rgba(224, 122, 95, 0.12), transparent 72%);
+  --mock-write-bg: rgba(255, 255, 255, 0.55);
+  --mock-sidebar-bg: rgba(255, 255, 255, 0.4);
+  --mock-text: #1a1a1a;
+  --mock-muted: #8a94a6;
+  --mock-border: rgba(94, 129, 172, 0.18);
+  --mock-h1: #9a3412;
+  --mock-h2: #b45309;
+  --mock-h3: #4d7c0f;
+  --mock-h4: #0f766e;
+  --mock-h5: #be123c;
+  --mock-h6: #57534e;
+  --mock-quote-bg: #ffffff;
+  --mock-quote-text: #8b93a1;
+  --mock-quote-line: #2e3440;
+  --mock-code-bg: #f6f8fa;
+  --mock-code-text: #3b4252;
+  --mock-code-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 10px rgba(0, 0, 0, 0.04),
+    0 12px 24px rgba(0, 0, 0, 0.05);
+  --mock-table-head: #f2f5f9;
+  --mock-table-border: rgba(94, 129, 172, 0.22);
+  --mock-link: #5e81ac;
+  --mock-inline-code: #81b29a;
+  --mock-inline-code-bg: rgba(129, 178, 154, 0.14);
+  --mock-window-shadow: 0 40px 120px -24px rgba(6, 10, 20, 0.7);
+}
+
+.mock[data-theme='dark'] {
+  --mock-app-bg: #1a1d24;
+  --mock-app-tint: radial-gradient(ellipse 1200px 800px at 15% 8%, rgba(94, 129, 172, 0.16), transparent 70%),
+    radial-gradient(ellipse 1000px 700px at 88% 82%, rgba(233, 105, 0, 0.12), transparent 72%);
+  --mock-write-bg: rgba(46, 52, 64, 0.62);
+  --mock-sidebar-bg: rgba(46, 52, 64, 0.45);
+  --mock-text: #eceff4;
+  --mock-muted: #8b97a8;
+  --mock-border: rgba(255, 255, 255, 0.08);
+  --mock-h1: #fb923c;
+  --mock-h2: #60a5fa;
+  --mock-h3: #34d399;
+  --mock-h4: #a78bfa;
+  --mock-h5: #22d3ee;
+  --mock-h6: #94a3b8;
+  --mock-quote-bg: #1d1f23;
+  --mock-quote-text: rgba(255, 255, 255, 0.75);
+  --mock-quote-line: rgba(255, 255, 255, 0.8);
+  --mock-code-bg: #1d1f23;
+  --mock-code-text: #d8dee9;
+  --mock-code-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.26),
+    0 16px 32px rgba(0, 0, 0, 0.2);
+  --mock-table-head: rgba(255, 255, 255, 0.05);
+  --mock-table-border: rgba(255, 255, 255, 0.12);
+  --mock-link: #a0bc88;
+  --mock-inline-code: #81b29a;
+  --mock-inline-code-bg: rgba(129, 178, 154, 0.16);
+  --mock-window-shadow: 0 40px 120px -24px rgba(0, 0, 0, 0.85);
+}
+
+.mock[data-theme='salt'] {
+  --mock-app-bg: #e4eddf;
+  --mock-app-tint: radial-gradient(ellipse 1200px 800px at 20% 12%, rgba(150, 185, 160, 0.22), transparent 70%),
+    radial-gradient(ellipse 1000px 700px at 85% 85%, rgba(233, 105, 0, 0.09), transparent 72%);
+  --mock-write-bg: rgba(240, 245, 235, 0.55);
+  --mock-sidebar-bg: rgba(240, 245, 235, 0.42);
+  --mock-text: #14180f;
+  --mock-muted: #7d8a74;
+  --mock-border: rgba(129, 178, 154, 0.24);
+  --mock-h1: #9a3412;
+  --mock-h2: #b45309;
+  --mock-h3: #4d7c0f;
+  --mock-h4: #0f766e;
+  --mock-h5: #be123c;
+  --mock-h6: #57534e;
+  --mock-quote-bg: #eaefef;
+  --mock-quote-text: #8b93a1;
+  --mock-quote-line: #2e3440;
+  --mock-code-bg: #edf5f9;
+  --mock-code-text: #3b4252;
+  --mock-code-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 4px 10px rgba(0, 0, 0, 0.05),
+    0 12px 28px rgba(0, 0, 0, 0.06);
+  --mock-table-head: rgba(129, 178, 154, 0.1);
+  --mock-table-border: rgba(129, 178, 154, 0.28);
+  --mock-link: #81b29a;
+  --mock-inline-code: #4f7f68;
+  --mock-inline-code-bg: rgba(129, 178, 154, 0.18);
+  --mock-window-shadow: 0 40px 120px -24px rgba(30, 50, 35, 0.55);
+}
+
+.mock__window {
+  background: var(--mock-app-bg);
+  background-image: var(--mock-app-tint);
+  box-shadow: var(--mock-window-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition:
+    background-color 0.6s var(--ease-silk),
+    box-shadow 0.6s var(--ease-silk);
+}
+
+/* 窗口标题栏 */
+.mock__titlebar {
+  background: color-mix(in srgb, var(--mock-app-bg) 82%, transparent);
+  border-bottom: 1px solid var(--mock-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.mock__dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.18);
+}
+
+/* 侧边栏 */
+.mock__sidebar {
+  background: var(--mock-sidebar-bg);
+  border-right: 1px solid var(--mock-border);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+}
+
+.mock__file {
+  color: var(--mock-muted);
+  border-radius: 6px;
+  transition: background-color 0.3s var(--ease-silk);
+}
+.mock__file:hover {
+  background: color-mix(in srgb, var(--mock-text) 6%, transparent);
+}
+.mock__file--active {
+  color: var(--mock-h2);
+  background: color-mix(in srgb, var(--mock-h2) 12%, transparent);
+  font-weight: 600;
+}
+
+/* 写作区 —— 液态玻璃 */
+.mock__write {
+  background: var(--mock-write-bg);
+  backdrop-filter: blur(48px) saturate(200%);
+  -webkit-backdrop-filter: blur(48px) saturate(200%);
+  border-radius: 16px;
+  box-shadow:
+    0 4px 24px rgba(100, 110, 140, 0.1),
+    0 12px 48px rgba(100, 110, 140, 0.08),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.25),
+    inset 1px 0 0 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.05);
+  color: var(--mock-text);
+  font-family: var(--font-display);
+  transition: background-color 0.6s var(--ease-silk);
+}
+
+/* 文档被窗口截断处做淡出 */
+.mock__fade {
+  mask-image: linear-gradient(to bottom, #000 78%, transparent 99%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 99%);
+}
+
+/* 标题：左侧色块 + 等级图标，还原 headline.css */
+.mock__h {
+  position: relative;
+  font-weight: 700;
+  -webkit-text-stroke: 0.018em currentColor;
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+  border-left: 4px solid currentColor;
+  border-radius: 2px 0 0 2px;
+  padding-left: 12px;
+  display: inline-block;
+}
+
+.mock__h--1 {
+  border-left: none;
+  padding-left: 0;
+  text-align: center;
+  display: block;
+}
+
+/* 引用块 */
+.mock__quote {
+  position: relative;
+  background: var(--mock-quote-bg);
+  color: var(--mock-quote-text);
+  border-radius: 3px;
+  padding: 12px 14px 12px 18px;
+  box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.05), 0 0 0.05rem rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+.mock__quote::before {
+  content: ' ';
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 4.5px;
+  background: var(--mock-quote-line);
+}
+
+/* 代码块 —— Mac 窗口风格 */
+.mock__code {
+  position: relative;
+  background: var(--mock-code-bg);
+  color: var(--mock-code-text);
+  border: 1px solid rgba(129, 178, 154, 0.18);
+  border-radius: 16px;
+  box-shadow: var(--mock-code-shadow);
+  font-family: var(--font-mono);
+  padding: 2.6em 1.3em 1.1em;
+  overflow: hidden;
+  transition: background-color 0.6s var(--ease-silk);
+}
+
+.mock__code::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff5f57;
+  box-shadow:
+    18px 0 0 #febc2e,
+    36px 0 0 #28c840;
+}
+
+.mock__code-lang {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mock-muted);
+  opacity: 0.7;
+}
+
+.mock__inline-code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  padding: 0.15em 0.42em;
+  border-radius: 7px;
+  background: var(--mock-inline-code-bg);
+  color: var(--mock-inline-code);
+  font-weight: 600;
+  border: 1px solid color-mix(in srgb, var(--mock-inline-code) 32%, transparent);
+}
+
+.mock__link {
+  color: var(--mock-link);
+  border-bottom: 1px solid color-mix(in srgb, var(--mock-link) 40%, transparent);
+  text-decoration: none;
+  transition: border-color 0.3s var(--ease-silk);
+}
+.mock__link:hover {
+  border-bottom-color: var(--mock-link);
+}
+
+.mock__table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.86rem;
+}
+.mock__table th {
+  background: var(--mock-table-head);
+  font-weight: 600;
+}
+.mock__table th,
+.mock__table td {
+  border: 1px solid var(--mock-table-border);
+  padding: 0.42rem 0.7rem;
+  text-align: left;
+}
+.mock__table tbody tr:nth-child(even) {
+  background: color-mix(in srgb, var(--mock-text) 3.5%, transparent);
+}
+
+/* 主题切换胶囊 */
+.theme-pill {
+  position: relative;
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.theme-pill__btn {
+  position: relative;
+  z-index: 1;
+  padding: 0.42rem 1.05rem;
+  border: none;
+  background: none;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-mist-500);
+  cursor: pointer;
+  transition: color 0.35s var(--ease-silk);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  white-space: nowrap;
+}
+.theme-pill__btn[data-active='true'] {
+  color: #fff;
+}
+.theme-pill__btn:hover {
+  color: var(--color-mist-100);
+}
+
+.theme-pill__thumb {
+  position: absolute;
+  z-index: 0;
+  top: 4px;
+  bottom: 4px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--color-ember-500), var(--color-ember-400));
+  box-shadow: 0 6px 18px -6px rgba(233, 105, 0, 0.9);
+  transition:
+    transform 0.45s var(--ease-silk),
+    width 0.45s var(--ease-silk);
+}
+
+/* 功能卡片 / 图标 */
+.feature-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  flex: none;
+  background: linear-gradient(150deg, rgba(248, 119, 89, 0.18), rgba(66, 139, 202, 0.14));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  color: var(--color-ember-300);
+}
+
+/* 安装步骤 */
+.step-index {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  color: var(--color-ember-400);
+}
+
+.code-line {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--color-mist-300);
+  word-break: break-all;
+}
+
+/* 复制按钮 */
+.copy-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-mist-500);
+  cursor: pointer;
+  transition: all 0.3s var(--ease-silk);
+}
+.copy-btn:hover {
+  color: var(--color-ember-300);
+  border-color: rgba(248, 119, 89, 0.4);
+  background: rgba(248, 119, 89, 0.1);
+}
+
+/* 跑马灯 */
+.marquee {
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* 漂浮 */
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.float-soft {
+  animation: float-soft 7s ease-in-out infinite;
+}

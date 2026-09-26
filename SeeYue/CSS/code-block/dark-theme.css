@@ -1,0 +1,176 @@
+.cm-s-inner.CodeMirror {
+    /* background: #2e3440; */
+    color: #d8dee9;
+}
+
+.cm-s-inner div.CodeMirror-selected {
+    background: #434c5e;
+}
+
+.cm-s-inner .CodeMirror-line::selection,
+.cm-s-inner .CodeMirror-line > span::selection,
+.cm-s-inner .CodeMirror-line > span > span::selection {
+    background: #3b4252;
+}
+
+.cm-s-inner .CodeMirror-line::-moz-selection,
+.cm-s-inner .CodeMirror-line > span::-moz-selection,
+.cm-s-inner .CodeMirror-line > span > span::-moz-selection {
+    background: #3b4252;
+}
+
+.cm-s-inner .CodeMirror-gutters {
+    /* background  : #2e3440; */
+    border-right: 0px;
+}
+
+.cm-s-inner .CodeMirror-guttermarker {
+    color: #4c566a;
+}
+
+.cm-s-inner .CodeMirror-guttermarker-subtle {
+    color: #4c566a;
+}
+
+.cm-s-inner .CodeMirror-linenumber {
+    color: #4c566a;
+}
+
+.cm-s-inner .CodeMirror-cursor {
+    border-left: 1px solid #f8f8f0;
+}
+
+.cm-s-inner span.cm-comment {
+    color: #4c566a;
+}
+
+.cm-s-inner span.cm-atom {
+    color: #C678DD;  /* JSON 布尔值/null：明亮的紫色，突出特殊值 */
+}
+
+.cm-s-inner span.cm-number {
+    color: #D19A66;  /* JSON 数字：温暖的橙色，与字符串区分明显 */
+}
+
+/* 针对 JSON 模式的特定样式 */
+.md-fences.md-fences-advanced.md-focus .cm-s-inner span.cm-atom,
+.md-fences .cm-s-inner span.cm-atom {
+    color: #C678DD !important;  /* JSON 布尔值/null */
+}
+
+.md-fences.md-fences-advanced.md-focus .cm-s-inner span.cm-number,
+.md-fences .cm-s-inner span.cm-number {
+    color: #D19A66 !important;  /* JSON 数字 */
+}
+
+.cm-s-inner span.cm-comment.cm-attribute {
+    color: #97b757;
+}
+
+.cm-s-inner span.cm-comment.cm-def {
+    color: #bc9262;
+}
+
+.cm-s-inner span.cm-comment.cm-tag {
+    color: #bc6283;
+}
+
+.cm-s-inner span.cm-comment.cm-type {
+    color: #5998a6;
+}
+
+.cm-s-inner span.cm-property,
+.cm-s-inner span.cm-attribute {
+    color: #88C0D0;  /* JSON 属性名：更明亮的青色，提升可读性 */
+}
+
+/* 针对 JSON 模式的属性名 */
+.md-fences.md-fences-advanced.md-focus .cm-s-inner span.cm-property,
+.md-fences .cm-s-inner span.cm-property,
+.md-fences.md-fences-advanced.md-focus .cm-s-inner span.cm-attribute,
+.md-fences .cm-s-inner span.cm-attribute {
+    color: #88C0D0 !important;  /* JSON 属性名 */
+}
+
+.cm-s-inner span.cm-keyword {
+    color: #81A1C1;
+}
+
+.cm-s-inner span.cm-builtin {
+    color: #81A1C1;
+}
+
+.cm-s-inner span.cm-string {
+    color: #98C379;  /* JSON 字符串值：柔和的绿色，更舒适 */
+}
+
+/* 针对 JSON 模式的字符串 */
+.md-fences.md-fences-advanced.md-focus .cm-s-inner span.cm-string,
+.md-fences .cm-s-inner span.cm-string {
+    color: #98C379 !important;  /* JSON 字符串值 */
+}
+
+.cm-s-inner span.cm-variable {
+    color: #d8dee9;
+}
+
+.cm-s-inner span.cm-variable-2 {
+    color: #d8dee9;
+}
+
+.cm-s-inner span.cm-variable-3,
+.cm-s-inner span.cm-type {
+    color: #d8dee9;
+}
+
+.cm-s-inner span.cm-def {
+    color: #8FBCBB;
+}
+
+.cm-s-inner span.cm-bracket {
+    color: #7C8A99;  /* JSON 括号：柔和的蓝灰色，不抢眼但清晰 */
+}
+
+/* 针对 JSON 模式的括号 */
+.md-fences.md-fences-advanced.md-focus .cm-s-inner span.cm-bracket,
+.md-fences .cm-s-inner span.cm-bracket {
+    color: #7C8A99 !important;  /* JSON 括号 */
+}
+
+.cm-s-inner span.cm-tag {
+    color: #bf616a;
+}
+
+.cm-s-inner span.cm-header {
+    color: #b48ead;
+}
+
+.cm-s-inner span.cm-link {
+    color: #b48ead;
+}
+
+/* 同 light-theme，不填充背景 */
+.cm-s-inner span.cm-error {
+    background: transparent;
+    color: #d08770;
+}
+
+/* .cm-s-inner .CodeMirror-activeline-background {
+  background: #3b4252;
+} */
+
+.cm-s-inner .CodeMirror-matchingbracket {
+    text-decoration: underline;
+    color: white !important;
+}
+
+/* diff 样式，仿 GitHub */
+.cm-negative {
+    color: #ffd8d3;
+    background-color: #78191b;
+}
+
+.cm-positive {
+    color: #b4f1b4;
+    background-color: #1b4721;
+}

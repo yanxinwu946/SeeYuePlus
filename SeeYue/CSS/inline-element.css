@@ -1,0 +1,97 @@
+/* 本文件为行内元素样式设置 */
+/* ================================================================= */
+
+
+/* 加粗 */
+#write strong {
+    font-family: var(--bold-text-font);
+    color: var(--bold-text-color);
+    font-size: var(--bold-text-size);
+    font-weight: var(--bold-text-weight, bold) !important;
+    -webkit-text-stroke: var(--bold-text-stroke, 0);
+    padding: 0 1px;
+}
+
+/* 标题内的加粗与标题本身同为 700，只靠字重分不出来，再加一档描边 */
+#write :is(h1, h2, h3, h4, h5, h6) strong {
+    -webkit-text-stroke: calc(var(--bold-text-stroke, 0) + 0.012em);
+}
+
+/* 斜体 */
+#write em {
+    font-family: var(--italic-text-font);
+    font-size: var(--italic-text-size);
+    color: inherit;
+    padding: 0 5px 0 2px;
+}
+
+/* 高亮 */
+#write mark {
+    background-color: transparent !important;
+    color: inherit;
+    box-shadow: 0 var(--marked-text-bg-height) 0 0 var(--marked-text-bg-color) inset;
+    padding: 0 2px 1px 2px;
+    margin: 0 1px;
+}
+
+/* 删除文字 */
+#write del {
+    color: var(--deleted-text-color);
+    padding: 0px 2px;
+}
+
+
+/* 行间代码 */
+#write :is(code, tt) {
+    display: inline;
+    margin: 0 2px;
+    padding: 2px 5px 2px;
+    font-family: var(--line-code-font);
+    color: var(--line-code-color);
+    background-color: var(--line-code-bg-color);
+    border-radius: var(--line-code-bg-radius);
+    font-size: var(--line-code-size);
+    line-height: normal;
+    vertical-align: baseline;
+    /* 跨页断开时每段各自画出完整的框，而不是被拦腰切开 */
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+/* 标题里的行内代码：等宽字体内容区约 1.35em，比标题 1.3 的行高还高，
+   竖直 padding 与边框又不撑行框，只能缩字号 + 去边框才装得回去 */
+#write :is(h1, h2, h3, h4, h5, h6) :is(code, tt) {
+    padding: 0 0.32em;
+    border-width: 0;
+    font-size: 0.9em !important;
+    line-height: 1.3;
+}
+
+#write blockquote code {
+    background-color: var(--blockquote-line-code-bg-color);
+}
+
+/* 表格中的行内代码特殊处理，防止换行重叠 */
+#write table :is(code, tt) {
+    display: inline-block;
+    line-height: 1.4;
+    vertical-align: middle;
+    margin: 1px 2px;
+    background-color: var(--table-line-code-bg-color);
+}
+
+/* 下划线 */
+#write u {
+    background-color: inherit;
+    color: inherit;
+    font-size: inherit;
+    text-decoration: none;
+    /* 下边框模拟下划线 */
+    border-bottom: var(--text-underline);
+    padding-bottom: var(--text-bottom-border-distance);
+}
+
+/* 行内元素提示符号 */
+.md-meta {
+    color: var(--inline-element-prompt-char-color);
+}

@@ -1,0 +1,16 @@
+.idea/
+bin/
+.DS_Store
+
+# 宣传页（site/）—— 依赖与构建产物不入库，由 GitHub Actions 构建
+site/node_modules/
+site/dist/
+site/.vite/
+site/*.tsbuildinfo
+site/node_modules/.tmp/
+
+# 由 site/scripts/build-theme.mjs 从 SeeYue/CSS 拍平生成
+site/public/theme/
+
+# 调试截图
+.shots/

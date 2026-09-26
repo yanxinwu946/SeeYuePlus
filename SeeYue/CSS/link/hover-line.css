@@ -1,0 +1,21 @@
+/* 本文件为链接 hover 样式 —— 线移动 */
+/* 支持跨行链接 */
+/* 来源 https://hexo.theme.oranges.zcheng.site/css-animation-design.html */
+/* ================================================================= */
+
+
+span:is([md-inline="link"], [md-inline="url"]).md-link {
+    position: relative;
+    /* 使用 background 实现下划线，支持跨行 */
+    background-image: linear-gradient(to right, var(--hover-link-bottom-line-start-color), var(--hover-link-bottom-line-end-color));
+    background-size: 0% 1.5px;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    transition: background-size .5s ease;
+    /* 设置下划线与文字的距离 */
+    padding-bottom: 2px;
+}
+
+span:is([md-inline="link"], [md-inline="url"]).md-link:hover {
+    background-size: 100% 1.5px;
+}

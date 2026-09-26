@@ -1,0 +1,200 @@
+/* 本文件为标题样式设置 */
+/* ================================================================= */
+
+
+/* ——————————————————————————————————— 基本设置 ——————————————————————————————————— */
+#write :is(h2, h3, h4, h5, h6),
+#write :is(h3 a, h4 a, h5 a, h6 a) {
+    position: relative;
+    font-weight: var(--all-headline-weight, bold) !important;
+    /* 霞鹜文楷无 Bold，靠描边补足，否则字体加载后标题会明显变细 */
+    -webkit-text-stroke: var(--headline-text-stroke, .018em);
+    line-height: 1.3;
+    cursor: text;
+    font-family: var(--all-headline-font);
+    letter-spacing: var(--headline-text-letter-space);
+    color: var(--h3-color);
+    border: none !important;
+}
+
+/* 每一级各自一种颜色，不再共用 */
+#write :is(h4, h4 a) {
+    color: var(--h4-color);
+}
+
+#write :is(h5, h5 a) {
+    color: var(--h5-color);
+}
+
+#write :is(h6, h6 a) {
+    color: var(--h6-color);
+}
+
+#write h2 {
+    font-size: var(--h2-size);
+}
+
+#write :is(h3, h4, h5, h6) {
+    margin-bottom: -5px;
+    margin-top: 2rem;
+}
+
+#write h3 {
+    font-size: var(--h3-size);
+}
+
+#write h4 {
+    font-size: var(--h4-size);
+}
+
+#write h5 {
+    font-size: var(--h5-size);
+}
+
+#write h6 {
+    font-size: var(--h6-size);
+}
+
+/* 标题为网址时，样式修改 */
+:is(h1, h2, h3, h4, h5, h6):hover a.anchor {
+    text-decoration: none !important;
+    border: none !important;
+}
+
+:is(h1, h2, h3, h4, h5, h6) tt,
+:is(h1, h2, h3, h4, h5, h6) code {
+    font-size: inherit !important;
+}
+
+#write :is(h1, h1 a) {
+    font-family: var(--all-headline-font);
+    font-weight: var(--all-headline-weight, bold);
+    -webkit-text-stroke: var(--headline-text-stroke, .018em);
+    font-size: var(--h1-size);
+    color: var(--h1-color);
+    padding-top: 2rem;
+    margin-bottom: 3rem;
+    line-height: 1.4;
+    text-align: center;
+    position: relative;
+}
+
+h1 a {
+    text-decoration: none !important;
+    border: none !important;
+    color: inherit !important;
+}
+
+/* 二级标题样式一 */
+/* #write h2 {
+    position: relative;
+}
+
+#write h2 span {
+    color: var(--h2-color);
+    border-radius: var(--h2-text-bg-radius);
+    background-image: var(--h2-text-bg-color);
+    padding: 0 5px;
+    margin-left: .5px;
+}
+
+#write h2::after {
+    background-color: var(--h2-bottom-border-color);
+    height: var(--h2-bottom-border-height);
+    width: 100%;
+    display: inline-block;
+    content: " ";
+    position: absolute;
+    bottom: 0;
+    left: 0.5px;
+} */
+
+/* 二级标题样式三（简洁风格：无背景，仅底部下划线） */
+/* 底部间距用 margin 而非 padding，否则左边框会连带把这段内边距也包进去，
+   使 h2 色块比其它级长一截 */
+#write h2 {
+    position: relative;
+    border-bottom: none;
+    margin-bottom: calc(1rem + var(--h2-text-bottom-line-distance));
+    color: var(--h2-color);
+}
+
+#write h2 span {
+    color: inherit;
+    background: none;
+    padding: 0;
+}
+
+/* 二级标题样式二 */
+/* #write h2,
+#write h2::before {
+  color      : var(--h2-color);
+  font-family: var(--all-headline-font);
+}
+
+#write h2 span {
+  background     : #ef7060;
+  padding    : 3px 5px 1px;
+  border-top-right-radius: 3px;
+  border-top-left-radius : 3px;
+  margin-right       : 3px;
+}
+
+#write h2:after {
+  display       : inline-block;
+  content       : "";
+  vertical-align: bottom;
+  border-bottom : 36px solid #dfd7d3;
+  border-right  : 20px solid transparent;
+}
+
+#write h2 {
+  border-bottom : 2.5px solid #ef7060 !important;
+  padding-bottom: 0 !important;
+} */
+
+#write :is(h2 a, h2 a:hover) {
+    border: none !important;
+}
+
+
+/* ——————————————————————————————————— 标题前装饰 ——————————————————————————————————— */
+/* 色块用标题自身的左边框实现，随标题盒自动伸展，不需要手工对齐 */
+/* 需 !important：上面的基础规则有 border: none !important */
+#write > :is(h2, h3, h4, h5, h6) {
+    border-left: var(--headline-block-width, 4px) solid var(--headline-block-color, currentColor) !important;
+    border-radius: var(--headline-block-radius, 2px) 0 0 var(--headline-block-radius, 2px);
+    padding-left: var(--headline-block-distance, 12px) !important;
+}
+
+/* 标题等级提示图标，排在色块外侧。占用 ::after 以免与色块争位 */
+#write > :is(h2, h3, h4, h5, h6)::after {
+    display: var(--headline-rating-prompt-state, inline-block);
+    position: absolute;
+    right: calc(100% + var(--headline-block-width, 4px) + 6px);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--headline-rating-prompt-word-color, #999) !important;
+    font-family: "remixicon";
+    font-size: var(--headline-rating-prompt-word-size, 14px) !important;
+    /* 描边与粗体是给霞鹜文楷补字重的，套到 remixicon 图标上只会糊成一团 */
+    font-weight: normal;
+    -webkit-text-stroke: 0;
+    line-height: 1;
+    letter-spacing: 0;
+    border: none;
+    padding: 0;
+    pointer-events: none;
+}
+
+#write > h2::after { content: "\ede7"; }
+#write > h3::after { content: "\ede8"; }
+#write > h4::after { content: "\ede9"; }
+#write > h5::after { content: "\edea"; }
+#write > h6::after { content: "\edeb"; }
+
+/* Typora 光标进入标题时会在左侧再画一个层级角标，与上面常驻的重合。
+   限直接子元素，别误伤引用块里 Admonitions 的标题图标 */
+#write > :is(h1, h2, h3, h4, h5, h6).md-focus::before {
+    display: none !important;
+}
