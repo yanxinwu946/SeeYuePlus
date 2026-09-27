@@ -107,6 +107,10 @@
 /* ——————————————————————————————— 元素微调 ——————————————————————————————— */
 @media print {
 
+    #write :is(h1, h2, h3, h4, h5, h6, strong) {
+    -webkit-text-stroke: 0 !important;
+    }
+
     /* 引用块去掉底色，图标与标题前色块保留 */
     #write blockquote {
     background-color: transparent !important;
