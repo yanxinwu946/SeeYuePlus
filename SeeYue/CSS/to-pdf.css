@@ -64,8 +64,8 @@
     break-after: avoid;
     }
 
-    /* 原子单元，整体不拆 */
-    :is(blockquote, img, li, tr) {
+    /* 原子单元，整体不拆。图片的晕影在 .md-image 的内边距里，盒子要一起走 */
+    :is(blockquote, .md-image, img, li, tr) {
     break-inside: avoid;
     }
 
@@ -83,12 +83,14 @@
     break-inside: auto;
     }
 
-    /* 表格铺满正文宽，不再沿用屏幕上的「按内容自适应」 */
+    /* 表格铺满正文宽。外框改用边框：box-shadow 会在断页处印到相邻页 */
     :is(figure, .md-table-fig) {
     width: auto !important;
     min-width: 0 !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
+    box-shadow: none !important;
+    border: var(--table-all-cell-border);
     }
 
     table {
@@ -99,8 +101,15 @@
     display: table-header-group;
     }
 
+    /* 代码块允许断开。clip 能裁掉圆角外的溢出，又不会像 auto 那样变成滚动盒把后文切掉。
+       阴影改由边框承担，断页处不再往相邻页漏一圈。 */
+    :is(pre.md-fences, pre[mdtype="fences"], .md-fences) {
+    overflow: clip !important;
+    box-shadow: none !important;
+    }
+
     pre {
-    word-wrap: break-word;
+    overflow-wrap: break-word;
     }
 }
 
@@ -111,9 +120,16 @@
     -webkit-text-stroke: 0 !important;
     }
 
-    /* 引用块去掉底色，图标与标题前色块保留 */
+    /* 引用块去掉底色。自身阴影裁不进盒子，打印时去掉，避免页顶那一圈落到上一页。
+       引号图标原来向上探出 10px，同样会跨页 */
     #write blockquote {
     background-color: transparent !important;
+    box-shadow: none !important;
+    overflow: clip;
+    }
+
+    #write blockquote > *:not(h1, h2, h3, h4, h5, h6):nth-child(1)::before {
+    top: 0;
     }
 
     /* 标题等级徽标是编辑辅助，不进成品 PDF；色块保留 */
@@ -121,8 +137,21 @@
     display: none !important;
     }
 
-    #write img {
-    padding: 0 auto !important;
+    /* 晕影画在盒子外面。元素被推到新页时，页顶外边距会被丢掉，
+       向上的那一圈就印在上一页底边。内边距把晕影收进会一起分页的盒子，
+       clip 再裁掉仍然探出去的部分。徽章是行内小图，不参与。 */
+    #write .md-image:not(:has(img[alt|="badge"])),
+    #write p:not(:has(.md-image)):has(> img:not([alt|="badge"])) {
+    display: block;
+    padding-block: 20px;
+    overflow: clip;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    text-align: center;
+    }
+
+    #write img:not([alt|="badge"]) {
+    display: block;
     margin: 0 auto !important;
     border: none !important;
     }
@@ -172,7 +201,7 @@
 
     #write .CodeMirror-gutters {
     border-width: 2px !important;
-    height: 105% !important;
+    height: 100% !important;
     }
 
     #write a[alt|=badge] {

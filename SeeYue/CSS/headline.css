@@ -85,31 +85,6 @@ h1 a {
     color: inherit !important;
 }
 
-/* 二级标题样式一 */
-/* #write h2 {
-    position: relative;
-}
-
-#write h2 span {
-    color: var(--h2-color);
-    border-radius: var(--h2-text-bg-radius);
-    background-image: var(--h2-text-bg-color);
-    padding: 0 5px;
-    margin-left: .5px;
-}
-
-#write h2::after {
-    background-color: var(--h2-bottom-border-color);
-    height: var(--h2-bottom-border-height);
-    width: 100%;
-    display: inline-block;
-    content: " ";
-    position: absolute;
-    bottom: 0;
-    left: 0.5px;
-} */
-
-/* 二级标题样式三（简洁风格：无背景，仅底部下划线） */
 /* 底部间距用 margin 而非 padding，否则左边框会连带把这段内边距也包进去，
    使 h2 色块比其它级长一截 */
 #write h2 {
@@ -124,34 +99,6 @@ h1 a {
     background: none;
     padding: 0;
 }
-
-/* 二级标题样式二 */
-/* #write h2,
-#write h2::before {
-  color      : var(--h2-color);
-  font-family: var(--all-headline-font);
-}
-
-#write h2 span {
-  background     : #ef7060;
-  padding    : 3px 5px 1px;
-  border-top-right-radius: 3px;
-  border-top-left-radius : 3px;
-  margin-right       : 3px;
-}
-
-#write h2:after {
-  display       : inline-block;
-  content       : "";
-  vertical-align: bottom;
-  border-bottom : 36px solid #dfd7d3;
-  border-right  : 20px solid transparent;
-}
-
-#write h2 {
-  border-bottom : 2.5px solid #ef7060 !important;
-  padding-bottom: 0 !important;
-} */
 
 #write :is(h2 a, h2 a:hover) {
     border: none !important;

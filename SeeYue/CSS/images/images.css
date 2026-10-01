@@ -99,15 +99,12 @@ p > .md-img-loaded[data-src*="https"]::before {
 
 #write p > .md-image:not(.md-img-error)::after {
     content: "图 " counter(imgNum) "  " attr(alt) !important;
-}
-
-#write p > .md-image:not(.md-img-error)::after {
     counter-increment: imgNum;
     text-align: center;
     width: 100%;
     display: inline-block;
     font-size: 12px;
-    font-family: "霞鹜文楷", "霞鹜文楷";
+    font-family: "霞鹜文楷", serif;
 }
 
 /* 链接图片 */

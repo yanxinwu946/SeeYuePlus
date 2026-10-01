@@ -15,9 +15,7 @@
 }
 
 /* 代码块整体 - Mac 窗口风格 */
-#write pre.md-fences,
-#write pre[mdtype="fences"],
-#write .md-fences {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) {
     background: var(--code-block-bg-color);
     color: var(--code-block-text-color, var(--writeArea-text-color));
     border: 1px solid rgba(129, 178, 154, 0.18);
@@ -35,32 +33,24 @@
 }
 
 /* CodeMirror 容器定位 */
-#write pre.md-fences .CodeMirror,
-#write pre[mdtype="fences"] .CodeMirror,
-#write .md-fences .CodeMirror {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .CodeMirror {
     position: relative;
     margin-top: 0;
 }
 
 /* 代码行容器 - 确保正确定位 */
-#write pre.md-fences .CodeMirror-code,
-#write pre[mdtype="fences"] .CodeMirror-code,
-#write .md-fences .CodeMirror-code {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .CodeMirror-code {
     position: relative;
 }
 
 /* 代码行 */
-#write pre.md-fences .CodeMirror-code pre,
-#write pre[mdtype="fences"] .CodeMirror-code pre,
-#write .md-fences .CodeMirror-code pre {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .CodeMirror-code pre {
     padding-left: 8px;
     padding-right: 8px;
 }
 
 /* Mac-style Window Controls */
-#write pre.md-fences::before,
-#write pre[mdtype="fences"]::before,
-#write .md-fences::before {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences)::before {
     content: "";
     position: absolute;
     top: 14px;
@@ -76,9 +66,7 @@
 }
 
 /* 代码块内 code 元素 */
-#write pre.md-fences code,
-#write pre[mdtype="fences"] code,
-#write .md-fences code {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) code {
     background: transparent;
     padding: 0;
     color: inherit;
@@ -86,125 +74,83 @@
 }
 
 /* 代码块内部背景透明 */
-#write pre.md-fences .CodeMirror,
-#write pre.md-fences .CodeMirror-scroll,
-#write pre.md-fences .CodeMirror-gutters,
-#write pre[mdtype="fences"] .CodeMirror,
-#write pre[mdtype="fences"] .CodeMirror-scroll,
-#write pre[mdtype="fences"] .CodeMirror-gutters,
-#write .md-fences .CodeMirror,
-#write .md-fences .CodeMirror-scroll,
-#write .md-fences .CodeMirror-gutters {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) :is(.CodeMirror, .CodeMirror-scroll, .CodeMirror-gutters) {
     background: transparent;
     color: inherit;
 }
 
 /* 代码块行号 */
-#write pre.md-fences .CodeMirror-linenumber,
-#write pre[mdtype="fences"] .CodeMirror-linenumber,
-#write .md-fences .CodeMirror-linenumber {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .CodeMirror-linenumber {
     color: var(--code-block-line-number-color, rgba(0, 0, 0, 0.45));
     font-family: var(--code-block-text-font), monospace;
     font-size: var(--code-block-text-size);
 }
 
 /* 代码块光标 */
-#write pre.md-fences .CodeMirror-cursor,
-#write pre[mdtype="fences"] .CodeMirror-cursor,
-#write .md-fences .CodeMirror-cursor {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .CodeMirror-cursor {
     border-left: 2px solid rgba(129, 178, 154, 0.7);
 }
 
 /* 防止嵌套多层 pre/code 造成重复背景 */
-#write pre.md-fences pre,
-#write pre.md-fences pre code,
-#write pre.md-fences .cm-s-inner .CodeMirror-lines,
-#write pre[mdtype="fences"] pre,
-#write pre[mdtype="fences"] pre code,
-#write pre[mdtype="fences"] .cm-s-inner .CodeMirror-lines,
-#write .md-fences pre,
-#write .md-fences pre code,
-#write .md-fences .cm-s-inner .CodeMirror-lines {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) pre,
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) pre code,
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .cm-s-inner .CodeMirror-lines {
     background: transparent !important;
     border: 0 !important;
     box-shadow: none !important;
 }
 
-#write pre.md-fences pre,
-#write pre[mdtype="fences"] pre,
-#write .md-fences pre {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) pre {
     padding: 0 !important;
     margin: 0 !important;
 }
 
-#write pre.md-fences .CodeMirror-scroll,
-#write pre[mdtype="fences"] .CodeMirror-scroll,
-#write .md-fences .CodeMirror-scroll {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .CodeMirror-scroll {
     overflow: visible !important;
 }
 
 /* CodeMirror 内部 sizer - 确保正确边距 */
-#write pre.md-fences .CodeMirror-sizer,
-#write pre[mdtype="fences"] .CodeMirror-sizer,
-#write .md-fences .CodeMirror-sizer {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .CodeMirror-sizer {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
 }
 
 /* CodeMirror 行容器 - 确保正确的内边距 */
-#write pre.md-fences .CodeMirror-lines,
-#write pre[mdtype="fences"] .CodeMirror-lines,
-#write .md-fences .CodeMirror-lines {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .CodeMirror-lines {
     padding: 0.6em 0 !important;
 }
 
 /* Code Syntax Highlighting */
-#write pre.md-fences .cm-s-inner .cm-comment,
-#write pre[mdtype="fences"] .cm-s-inner .cm-comment,
-#write .md-fences .cm-s-inner .cm-comment {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .cm-s-inner .cm-comment {
     color: rgba(120, 130, 130, 0.55);
 }
 
-#write pre.md-fences .cm-s-inner .cm-keyword,
-#write pre[mdtype="fences"] .cm-s-inner .cm-keyword,
-#write .md-fences .cm-s-inner .cm-keyword {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .cm-s-inner .cm-keyword {
     color: #4a6fa5;
     font-weight: 700;
 }
 
-#write pre.md-fences .cm-s-inner .cm-string,
-#write pre[mdtype="fences"] .cm-s-inner .cm-string,
-#write .md-fences .cm-s-inner .cm-string {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .cm-s-inner .cm-string {
     color: #5c8a6e;
 }
 
-#write pre.md-fences .cm-s-inner .cm-number,
-#write pre[mdtype="fences"] .cm-s-inner .cm-number,
-#write .md-fences .cm-s-inner .cm-number {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .cm-s-inner .cm-number {
     color: #c47f3c;
 }
 
-#write pre.md-fences .cm-s-inner .cm-def,
-#write pre[mdtype="fences"] .cm-s-inner .cm-def,
-#write .md-fences .cm-s-inner .cm-def {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .cm-s-inner .cm-def {
     color: #457b9d;
 }
 
-#write pre.md-fences .cm-s-inner .cm-variable,
-#write pre[mdtype="fences"] .cm-s-inner .cm-variable,
-#write .md-fences .cm-s-inner .cm-variable {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .cm-s-inner .cm-variable {
     color: inherit;
 }
 
-#write pre.md-fences .cm-s-inner .cm-property,
-#write pre[mdtype="fences"] .cm-s-inner .cm-property,
-#write .md-fences .cm-s-inner .cm-property {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .cm-s-inner .cm-property {
     color: #457b9d;
 }
 
-#write pre.md-fences .cm-s-inner .cm-operator,
-#write pre[mdtype="fences"] .cm-s-inner .cm-operator,
-#write .md-fences .cm-s-inner .cm-operator {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .cm-s-inner .cm-operator {
     color: inherit;
 }
 
@@ -254,10 +200,7 @@
 }
 
 /* Typora built-in code toolbar */
-#write pre.md-fences .code-tooltip,
-#write pre[mdtype="fences"] .code-tooltip,
-#write .md-fences .code-tooltip,
-#write [mdtype="fences"] .code-tooltip {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences, [mdtype="fences"]) .code-tooltip {
     position: absolute;
     top: 10px;
     right: 12px;
@@ -279,23 +222,13 @@
     box-shadow: none;
 }
 
-#write pre.md-fences:hover .code-tooltip,
-#write pre[mdtype="fences"]:hover .code-tooltip,
-#write .md-fences:hover .code-tooltip,
-#write [mdtype="fences"]:hover .code-tooltip,
-#write pre.md-fences:focus-within .code-tooltip,
-#write pre[mdtype="fences"]:focus-within .code-tooltip,
-#write .md-fences:focus-within .code-tooltip,
-#write [mdtype="fences"]:focus-within .code-tooltip {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences, [mdtype="fences"]):is(:hover, :focus-within) .code-tooltip {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
 }
 
-#write pre.md-fences .code-tooltip-content,
-#write pre[mdtype="fences"] .code-tooltip-content,
-#write .md-fences .code-tooltip-content,
-#write [mdtype="fences"] .code-tooltip-content {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences, [mdtype="fences"]) .code-tooltip-content {
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -307,14 +240,7 @@
     line-height: 1;
 }
 
-#write pre.md-fences .code-tooltip a,
-#write pre.md-fences .code-tooltip button,
-#write pre[mdtype="fences"] .code-tooltip a,
-#write pre[mdtype="fences"] .code-tooltip button,
-#write .md-fences .code-tooltip a,
-#write .md-fences .code-tooltip button,
-#write [mdtype="fences"] .code-tooltip a,
-#write [mdtype="fences"] .code-tooltip button {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences, [mdtype="fences"]) .code-tooltip :is(a, button) {
     pointer-events: auto;
     appearance: none;
     border: 1px solid rgba(255, 255, 255, 0.12);
@@ -329,14 +255,7 @@
     transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
 }
 
-#write pre.md-fences .code-tooltip a:hover,
-#write pre.md-fences .code-tooltip button:hover,
-#write pre[mdtype="fences"] .code-tooltip a:hover,
-#write pre[mdtype="fences"] .code-tooltip button:hover,
-#write .md-fences .code-tooltip a:hover,
-#write .md-fences .code-tooltip button:hover,
-#write [mdtype="fences"] .code-tooltip a:hover,
-#write [mdtype="fences"] .code-tooltip button:hover {
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences, [mdtype="fences"]) .code-tooltip :is(a, button):hover {
     transform: translateY(-1px);
     border-color: rgba(255, 255, 255, 0.22);
     background: rgba(255, 255, 255, 0.1);

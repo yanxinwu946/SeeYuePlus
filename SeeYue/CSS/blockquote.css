@@ -54,6 +54,66 @@
 }
 
 /* ————————————————————————————————— Admonitions 样式 ————————————————————————————————— */
+#write blockquote > h1 {
+    --bq-icon: var(--h1-example-blockquote-title-icon-color);
+    --bq-title-bg: var(--h1-example-blockquote-title-line-bg-color);
+    --bq-title: var(--h1-example-blockquote-title-color);
+    --bq-glyph: "\e603";
+    --bq-logo-size: var(--h1-example-blockquote-logo-size);
+    --bq-logo-gap: var(--h1-example-title-and-logo-distance);
+    --bq-line: var(--h1-example-blockquote-left-line-color);
+}
+
+#write blockquote > h2 {
+    --bq-icon: var(--h2-question-blockquote-title-icon-color);
+    --bq-title-bg: var(--h2-question-blockquote-title-line-bg-color);
+    --bq-title: var(--h2-question-blockquote-title-color);
+    --bq-glyph: "\e632";
+    --bq-logo-size: var(--h2-question-blockquote-logo-size);
+    --bq-logo-gap: var(--h2-question-title-and-logo-distance);
+    --bq-line: var(--h2-question-blockquote-left-line-color);
+}
+
+#write blockquote > h3 {
+    --bq-icon: var(--h3-warning-blockquote-title-icon-color);
+    --bq-title-bg: var(--h3-warning-blockquote-title-line-bg-color);
+    --bq-title: var(--h3-warning-blockquote-title-color);
+    --bq-glyph: "\e6aa";
+    --bq-logo-size: var(--h3-warning-blockquote-logo-size);
+    --bq-logo-gap: var(--h3-warning-title-and-logo-distance);
+    --bq-line: var(--h3-warning-blockquote-left-line-color);
+}
+
+#write blockquote > h4 {
+    --bq-icon: var(--h4-quote-blockquote-title-icon-color);
+    --bq-title-bg: var(--h4-quote-blockquote-title-line-bg-color);
+    --bq-title: var(--h4-quote-blockquote-title-color);
+    --bq-glyph: "\e626";
+    --bq-logo-size: var(--h4-quote-blockquote-logo-size);
+    --bq-logo-gap: var(--h4-quote-title-and-logo-distance);
+    --bq-line: var(--h4-quote-blockquote-left-line-color);
+}
+
+#write blockquote > h5 {
+    --bq-icon: var(--h5-tips-blockquote-title-icon-color);
+    --bq-title-bg: var(--h5-tips-blockquote-title-line-bg-color);
+    --bq-title: var(--h5-tips-blockquote-title-color);
+    --bq-glyph: "\e605";
+    --bq-logo-size: var(--h5-tips-blockquote-logo-size);
+    --bq-logo-gap: var(--h5-tips-title-and-logo-distance);
+    --bq-line: var(--h5-tips-blockquote-left-line-color);
+}
+
+#write blockquote > h6 {
+    --bq-icon: var(--h6-expand-blockquote-title-icon-color);
+    --bq-title-bg: var(--h6-expand-blockquote-title-line-bg-color);
+    --bq-title: var(--h6-expand-blockquote-title-color);
+    --bq-glyph: "\e67b";
+    --bq-logo-size: var(--h6-expand-blockquote-logo-size);
+    --bq-logo-gap: var(--h6-expand-title-and-logo-distance);
+    --bq-line: var(--h6-expand-blockquote-left-line-color);
+}
+
 #write blockquote > :is(h1, h2, h3, h4, h5, h6):first-child {
     font-family: var(--admonitions-blockquote-title-font);
     font-size: var(--admonitions-blockquote-title-size) !important;
@@ -63,6 +123,17 @@
     align-items: center;
     letter-spacing: 1px;
     font-weight: var(--all-headline-weight, bold) !important;
+    color: var(--bq-icon) !important;
+    background-color: var(--bq-title-bg);
+}
+
+#write blockquote > :is(h1, h2, h3, h4, h5, h6):first-child span {
+    color: var(--bq-title) !important;
+}
+
+#write blockquote > h2:first-child span {
+    background-image: none;
+    padding: 0;
 }
 
 /* 增加标题与文本间距 */
@@ -78,6 +149,7 @@
     position: absolute !important;
     top: 0;
     left: 0;
+    background-color: var(--bq-line) !important;
 }
 
 /* 图标 */
@@ -88,151 +160,8 @@
     top: 0px;
     left: 0px;
     line-height: 1;
-}
-
-/* —————————————————————— Example / 例子 （一级标题）—————————————————————— */
-/* 标题 */
-#write blockquote > h1:first-child {
-    color: var(--h1-example-blockquote-title-icon-color) !important;
-    background-color: var(--h1-example-blockquote-title-line-bg-color);
-
-}
-
-#write blockquote > h1:first-child span {
-    color: var(--h1-example-blockquote-title-color) !important;
-}
-
-/* 图标 */
-#write blockquote > :is(h1:first-child, h1.md-focus)::before {
-    content: "\e603" !important;
-    font-size: var(--h1-example-blockquote-logo-size) !important;
-    color: var(--h1-example-blockquote-title-icon-color) !important;
-    margin-right: var(--h1-example-title-and-logo-distance);
-}
-
-/* 竖线 */
-#write blockquote > h1:first-child::after {
-    background-color: var(--h1-example-blockquote-left-line-color) !important;
-}
-
-/* —————————————————————— Question / 问题 （二级标题）—————————————————————— */
-/* 标题 */
-#write blockquote > h2:first-child {
-    color: var(--h2-question-blockquote-title-icon-color) !important;
-    background-color: var(--h2-question-blockquote-title-line-bg-color);
-}
-
-#write blockquote > h2:first-child span {
-    color: var(--h2-question-blockquote-title-color) !important;
-    background-image: none;
-    padding: 0;
-}
-
-/* 图标 */
-#write blockquote > :is(h2:first-child, h2.md-focus)::before {
-    content: "\e632" !important;
-    font-size: var(--h2-question-blockquote-logo-size) !important;
-    color: var(--h2-question-blockquote-title-icon-color) !important;
-    margin-right: var(--h2-question-title-and-logo-distance);
-}
-
-/* 竖线 */
-#write blockquote > h2:first-child::after {
-    background: var(--h2-question-blockquote-left-line-color) !important;
-}
-
-/* —————————————————————— Warning / 注意 （三级标题）—————————————————————— */
-/* 标题 */
-#write blockquote > h3:first-child {
-    color: var(--h3-warning-blockquote-title-icon-color) !important;
-    background-color: var(--h3-warning-blockquote-title-line-bg-color);
-}
-
-#write blockquote > h3:first-child span {
-    color: var(--h3-warning-blockquote-title-color) !important;
-}
-
-/* 图标 */
-#write blockquote > :is(h3:first-child, h3.md-focus)::before {
-    content: "\e6aa" !important;
-    font-size: var(--h3-warning-blockquote-logo-size) !important;
-    color: var(--h3-warning-blockquote-title-icon-color) !important;
-    margin-right: var(--h3-warning-title-and-logo-distance);
-}
-
-/* 竖线 */
-#write blockquote > h3:first-child::after {
-    background-color: var(--h3-warning-blockquote-left-line-color);
-}
-
-/* —————————————————————— Quote / 参考 （四级标题）—————————————————————— */
-/* 标题 */
-#write blockquote > h4:first-child {
-    color: var(--h4-quote-blockquote-title-icon-color) !important;
-    background-color: var(--h4-quote-blockquote-title-line-bg-color);
-}
-
-#write blockquote > h4:first-child span {
-    color: var(--h4-quote-blockquote-title-color) !important;
-}
-
-/* 图标 */
-#write blockquote > :is(h4:first-child, h4.md-focus)::before {
-    content: "\e626" !important;
-    font-size: var(--h4-quote-blockquote-logo-size) !important;
-    color: var(--h4-quote-blockquote-title-icon-color) !important;
-    margin-right: var(--h4-quote-title-and-logo-distance);
-}
-
-/* 竖线 */
-#write blockquote > h4:first-child::after {
-    background-color: var(--h4-quote-blockquote-left-line-color);
-}
-
-/* —————————————————————— Tips / 提示 （五级标题）—————————————————————— */
-/* 标题 */
-#write blockquote > h5:first-child {
-    color: var(--h5-tips-blockquote-title-icon-color) !important;
-    background-color: var(--h5-tips-blockquote-title-line-bg-color);
-}
-
-#write blockquote > h5:first-child span {
-    color: var(--h5-tips-blockquote-title-color) !important;
-}
-
-/* 图标 */
-#write blockquote > :is(h5:first-child, h5.md-focus)::before {
-    content: "\e605" !important;
-    font-size: var(--h5-tips-blockquote-logo-size) !important;
-    color: var(--h5-tips-blockquote-title-icon-color) !important;
-    margin-right: var(--h5-tips-title-and-logo-distance);
-}
-
-/* 竖线 */
-#write blockquote > h5:first-child::after {
-    background-color: var(--h5-tips-blockquote-left-line-color);
-}
-
-/* —————————————————————— Expand / 拓展 （六级标题）—————————————————————— */
-/* 标题 */
-#write blockquote > h6:first-child {
-    color: var(--h6-expand-blockquote-title-icon-color) !important;
-    background-color: var(--h6-expand-blockquote-title-line-bg-color)
-}
-
-#write blockquote > h6:first-child span {
-    color: var(--h6-expand-blockquote-title-color) !important;
-}
-
-/* 图标 */
-#write blockquote > :is(h6:first-child, h6.md-focus)::before {
-    content: "\e67b" !important;
-    font-size: var(--h6-expand-blockquote-logo-size) !important;
-    color: var(--h6-expand-blockquote-title-icon-color) !important;
-    margin-right: var(--h6-expand-title-and-logo-distance);
-}
-
-/* 竖线 */
-#write blockquote > h6:first-child::after {
-    background-color: var(--h6-expand-blockquote-left-line-color);
+    content: var(--bq-glyph) !important;
+    font-size: var(--bq-logo-size) !important;
+    color: var(--bq-icon) !important;
+    margin-right: var(--bq-logo-gap);
 }
