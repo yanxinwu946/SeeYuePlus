@@ -43,8 +43,8 @@
 /* 12.1 宽度自适应 + 滚动显示 */
 @import "./SeeYue/CSS/table/auto-scroll.css";
 
-/* 12.2 全宽 + 滚动显示 */
- @import "./SeeYue/CSS/table/full-scroll.css";
+/* 12.2 全宽 + 滚动显示（与 12.1 互斥） */
+/* @import "./SeeYue/CSS/table/full-scroll.css"; */
 
 /* 13 引用块样式 */
 @import "./SeeYue/CSS/blockquote.css";
@@ -106,5 +106,5 @@
 /* 22 导出 PDF 设置 */
 @import "./SeeYue/CSS/to-pdf.css";
 
-/* 24 用户自定义【明亮主题】代码 */
+/* 24 用户自定义【护眼主题】代码 */
 @import "./SeeYue/CSS/custom/custom-salt.css";

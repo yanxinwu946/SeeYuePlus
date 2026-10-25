@@ -82,7 +82,7 @@
 /* —————————————————————————————— 脚注内容 —————————————————————————————— */
 #write .md-def-footnote {
     font-size: var(--end-footnote-area-text-size);
-    font-family: "霞鹜文楷", "霞鹜文楷" !important;
+    font-family: "霞鹜文楷" !important;
     color: var(--end-footnote-area-text-color);
     opacity: 1;
     position: relative;
@@ -208,7 +208,7 @@
 /* 导出后，尾部符号 */
 .reversefootnote {
     border: none !important;
-    color: #2a68cc !important;
+    color: var(--footnote-content-end-hook-color) !important;
 }
 
 #write sup.md-footnote a {

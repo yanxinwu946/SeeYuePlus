@@ -4,20 +4,6 @@
 /* VS Code  折叠全部内容快捷键: Ctrl + k + 0 */
 
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━ 一些颜色 ━━━━━━━━━━━━━━━━━━━━━━━━━ */
-:root {
-    --theme-color-01: #e96900;
-    --theme-color-02: #e2ecef;
-    --theme-color-03: #f87759;
-    --theme-color-04: #e07a5f;
-    --theme-color-05: #457b9d;
-    --theme-color-06: #7c9dca;
-    --theme-color-07: #ffee99;
-    --theme-color-08: #428bca;
-    --theme-color-09: #f76e40;
-    --theme-color-10: #f0f5f9;
-}
-
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━ Typora 原生界面变量 ━━━━━━━━━━━━━━━━━━━━━━━━━ */
 /* 设置面板、快速打开、原生菜单这些 Typora 自带的界面只认下面这组变量，
    主题不定义它们就会退回 Typora 内置的配色，界面会和主题对不上。 */
@@ -83,6 +69,9 @@
     --pdf-first-page-bg-color: #FFFFFF;
     /* 界面写作区域文本字体 */
     --writeArea-text-font: "霞鹜文楷", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    /* mermaid：Typora 官方变量，default / forest / dark / night / neutral */
+    --mermaid-theme: default;
+    --mermaid-font-family: var(--writeArea-text-font);
     /* 界面写作区域文本颜色 */
     --writeArea-text-color: #000;
     /* 界面写作区域文本大小 */
@@ -147,7 +136,7 @@
 
     /* ======================== YAML Front Matter ======================== */
     /* YAML Front Matter 文本颜色 */
-    --yaml-front-matter-text-color: #7b8a99;
+    --yaml-front-matter-text-color: #4b5563;
     /* YAML Front Matter 文本大小 */
     --yaml-front-matter-text-size: 0.9em;
     /* YAML Front Matter 背景色 */
@@ -220,15 +209,7 @@
 
     /* 标题文本字距 */
     --headline-text-letter-space: 2px;
-    /* 二级标题文本背景颜色 */
-    --h2-text-bg-color: linear-gradient(to bottom, #7b88a1, #a3acbf);
-    /* 二级标题文本背景圆角 */
-    --h2-text-bg-radius: 5px;
-    /* 二级标题底部边框颜色 */
-    --h2-bottom-border-color: #c3c8d2;
-    /* 二级标题底部横线高度 */
-    --h2-bottom-border-height: 4px;
-    /* 标题文本与底部边框间距 */
+    /* 二级标题与下文间距（加在 margin-bottom 上） */
     --h2-text-bottom-line-distance: 10px;
 
     /* 标题前色块宽度，设为 0 即关闭 */
@@ -261,7 +242,7 @@
     /* 1 级标题文本大小 */
     --contents-h1-size: 1rem;
     /* 2 ~ 6 级标题文本字体 */
-    --contents-h2-to-h6-font: "霞鹜文楷", "霞鹜文楷";
+    --contents-h2-to-h6-font: "霞鹜文楷";
     /* 2 ~ 6 级标题文本字体 */
     --contents-h2-to-h6-color: #003cab;
     /* 2 ~ 6 级标题文本字体 */
@@ -334,9 +315,9 @@
     --text-bottom-border-distance: 1px;
 
     /* 行内代码字体 */
-    --line-code-font: "霞鹜文楷", "霞鹜文楷";
+    --line-code-font: "霞鹜文楷";
     /* 行内代码颜色 */
-    --line-code-color: #7b88a1;
+    --line-code-color: #3d4d63;
     /* 行内代码大小 */
     --line-code-size: .9em;
     /* 行内代码背景色 */
@@ -485,8 +466,8 @@
     /* 表格最大高度 */
     /* css布局单位详解 https://juejin.cn/post/6859282467535519752 */
     --table-max-height: 50vh;
-    /* 表格是否水平居中（使用 auto-scroll.css），auto —— 开启，inherit —— 关闭 */
-    --table-horizontal-center: inherit;
+    /* 表格是否水平居中（使用 auto-scroll.css），auto —— 开启，0 —— 居左 */
+    --table-horizontal-center: 0;
     /* 表格最小宽度（使用 auto-scroll.css） */
     --table-min-width: 50%;
     /* 表格背景色 */
@@ -628,7 +609,7 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━ 引用块样式（blockquote.css） ━━━━━━━━━━━━━━━━━━━━━━━━━ */
 :root {
     /* 引用块文本字体 */
-    --blockquote-text-font: "霞鹜文楷", "霞鹜文楷";
+    --blockquote-text-font: "霞鹜文楷";
     /* 引用块文本颜色 */
     --blockquote-text-color: #999;
     /* 引用块文本大小 */
@@ -718,24 +699,25 @@
     --code-block-text-font: "JetBrainsMono NF", Consolas, "Microsoft YaHei", monospace;
     /* 代码块文本大小 */
     --code-block-text-size: calc(var(--writeArea-text-size) - 1px);
+    /* 代码块文本颜色 */
+    --code-block-text-color: #24292f;
     /* 代码块文本行高 */
-    --code-block-text-line-height: 1.3rem;
+    --code-block-text-line-height: 1.6;
     /* 代码块背景色 */
-    --code-block-bg-color: #f6f8fa !important;
-    /* 代码块阴影 */
+    --code-block-bg-color: #f6f8fa;
     /* 代码块阴影 */
     --code-block-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 10px rgba(0, 0, 0, 0.04), 0 12px 24px rgba(0, 0, 0, 0.05);
     /* 代码块边框 */
-    --code-block-border: none;
+    --code-block-border: 1px solid rgba(129, 178, 154, 0.22);
     /* 代码块背景圆角 */
-    --code-block-bg-radius: 5px;
+    --code-block-bg-radius: 16px;
     /* 代码块内，光标所在行的光标样式，用 border-left 实现 */
-    --focus-code-line-cursor-style: 3px solid #6495ed !important;
+    --focus-code-line-cursor-style: 2px solid #6495ed;
     /* 代码块内，光标所在行背景色 */
     --focus-code-line-bg-color: #f2f4f6;
 
     /* 代码块行号文本颜色 */
-    --code-block-line-number-color: #ccc;
+    --code-block-line-number-color: #6b7280;
     /* 代码块行号文本对齐方式 */
     --code-block-line-number-align-style: right;
     /* 代码块行号文本右侧竖线 */
@@ -762,41 +744,18 @@
     /* 鼠标悬浮在语言侯选框列表，该列表背景色 */
     --hover-lang-selection-box-li-bg-color: #f3f1f1;
 
-    /* 代码块最大高度，用于代码块滚动显示，开启 —— 50vh，关闭 —— initial */
-    --code-block-max-height: 50vh;
-    /* 是否开启代码块任意行横向滚动，是 —— pre，否 —— normal  */
-    --code-block-lines-horizontal-white-space: pre;
-    --code-block-lines-horizontal-overflow-x: auto;
     /* ============ 左侧小圆点 ============ */
-    /* 阴影模拟小圆点 */
-    /* 代码块顶栏左侧小圆点大小，用 width、height 实现 */
     --code-block-topBar-left-all-dot-size: 10px;
-    /* 代码块顶栏左侧红色小圆点颜色 */
     --code-block-topBar-left-redDot-color: #ff5f5a;
-    /* 代码块顶栏左侧黄色小圆点颜色 */
     --code-block-topBar-left-yellowDot-color: #ffbe2e;
-    /* 代码块顶栏左侧绿色小圆点颜色 */
     --code-block-topBar-left-greenDot-color: #2aca44;
-    /* 代码块顶栏左侧小圆点与小圆点间距 */
-    --code-block-topBar-left-dots-distance: 25px;
-    /* 代码块顶栏左侧小圆点上下位置，top 实现 */
-    --code-block-topBar-left-dots-top-position: -17px;
-    /* 代码块顶栏左侧小圆点左右位置，left 实现 */
-    --code-block-topBar-left-dots-left-position: 8px;
-
-    /* ============ 右侧编程语言 ============ */
-    /* 代码块顶栏右侧编程语言文本颜色 */
-    --code-block-topBar-right-program-lang-color: #aaa;
-    /* 代码块顶栏右侧编程语言文本大小 */
-    --code-block-topBar-right-program-lang-size: 15px;
-    /* 代码块顶栏右侧编程语言文本上下位置，top 实现 */
-    --code-block-topBar-right-program-lang-top-position: -22px;
-    /* 代码块顶栏右侧编程语言文本左右位置，right 实现 */
-    --code-block-topBar-right-program-lang-right-position: 8px;
+    --code-block-topBar-left-dots-distance: 18px;
+    --code-block-topBar-left-dots-top-position: 14px;
+    --code-block-topBar-left-dots-left-position: 14px;
 
     /* ======================== 代码块编程语言（code-lang.css） ======================== */
     /* 代码块右侧编程语言文本颜色 */
-    --code-block-right-program-lang-text-color: #aaa;
+    --code-block-right-program-lang-text-color: #6b7280;
     /* 代码块右侧编程语言文本大小 */
     --code-block-right-program-lang-text-size: 12px;
     /* 代码块右侧编程语言文本上下位置，top 实现，与左上角三个圆点同一行 */
@@ -872,11 +831,11 @@
 
     /* ======================== 文末脚注设置 ======================== */
     /* 文末脚注内容字体 */
-    --end-footnote-area-font: "霞鹜文楷", "霞鹜文楷";
+    --end-footnote-area-font: "霞鹜文楷";
     /* 文末脚注内容大小 */
     --end-footnote-area-text-size: .8rem;
     /* 文末脚注内容颜色 */
-    --end-footnote-area-text-color: #aaa;
+    --end-footnote-area-text-color: #6b7280;
 
     /* 是否开启文末脚注内容区域提示，block —— 开启，none —— 关闭 */
     --end-footnote-area-prompt-state: block;
@@ -1272,7 +1231,7 @@
     /* 右键菜单背景色 */
     --context-menu-bg-color: #fff;
     /* 右键菜单内文本字体 */
-    --context-menu-text-font: "霞鹜文楷", "霞鹜文楷";
+    --context-menu-text-font: "霞鹜文楷";
     /* 右键菜单内文本颜色 */
     --context-menu-text-color: #333;
     /* 右键菜单内文本大小 */
@@ -1310,7 +1269,7 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━ 底部栏设置（footer.css） ━━━━━━━━━━━━━━━━━━━━━━━━━ */
 :root {
     /* 底部栏文本字体 */
-    --footer-text-font: "霞鹜文楷", "霞鹜文楷";
+    --footer-text-font: "霞鹜文楷";
     /* 底部栏文本颜色 */
     --footer-text-color: #777;
     /* 底部栏文本大小 */
@@ -1375,7 +1334,7 @@
     /* 写作区域搜索面板背景色 */
     --writeArea-search-panel-bg-color: #fff;
     /* 写作区域搜索面板文本字体 */
-    --writeArea-search-panel-text-font: "霞鹜文楷", "霞鹜文楷";
+    --writeArea-search-panel-text-font: "霞鹜文楷";
     /* 写作区域搜索面板文本大小 */
     --writeArea-search-panel-text-size: 13px;
     /* 写作区域搜索面板文本颜色 */

@@ -55,9 +55,12 @@ blockquote :is(ol, ul) li p {
     position: absolute;
     left: -26px;
     top: calc(var(--writeArea-text-line-spacing, 1.8rem) / 2 - var(--ol-badge-size, 16px) / 2);
-    width: var(--ol-badge-size, 16px);
+    min-width: var(--ol-badge-size, 16px);
+    width: auto;
     height: var(--ol-badge-size, 16px);
-    border-radius: 50%;
+    padding: 0 4px;
+    box-sizing: border-box;
+    border-radius: 999px;
     background: var(--ol-badge-bg, var(--orderly-list-symbol-color));
     color: var(--ol-badge-text-color, #fff);
     font-size: var(--ol-badge-font-size, 10px);

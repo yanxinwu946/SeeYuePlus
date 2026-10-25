@@ -1,97 +1,91 @@
-/* 本文件为代码块样式设置 - 参考 Bloom 主题风格 */
+/* 本文件为代码块结构设置。语法色在 light-theme.css / dark-theme.css */
 /* ================================================================= */
 
 
-/* 行内代码 */
-#write code {
-    font-family: var(--code-block-text-font), monospace;
-    font-size: 0.88em;
-    padding: 0.2em 0.45em;
-    border-radius: 7px;
-    background: rgba(129, 178, 154, 0.14);
-    color: #81b29a;
-    font-weight: 600;
-    border: 1px solid rgba(129, 178, 154, 0.32);
-}
-
-/* 代码块整体 - Mac 窗口风格 */
+/* 代码块整体 */
 #write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) {
     background: var(--code-block-bg-color);
     color: var(--code-block-text-color, var(--writeArea-text-color));
-    border: 1px solid rgba(129, 178, 154, 0.18);
-    border-radius: 16px;
-    padding: 2.8em 1.4em 1.2em !important;
-    margin: 2em 0;
+    border: var(--code-block-border);
+    border-radius: var(--code-block-bg-radius);
+    padding: 2.5em 1.2em 0.55em !important;
+    margin: 1.6em 0;
     overflow: auto;
     box-shadow: var(--code-block-shadow);
     font-family: var(--code-block-text-font), monospace;
-    font-size: 14.5px;
-    line-height: 1.6;
+    font-size: var(--code-block-text-size);
+    line-height: var(--code-block-text-line-height);
     position: relative;
     tab-size: 4 !important;
     -moz-tab-size: 4 !important;
 }
 
-/* CodeMirror 容器定位 */
 #write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .CodeMirror {
     position: relative;
     margin-top: 0;
 }
 
-/* 代码行容器 - 确保正确定位 */
 #write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .CodeMirror-code {
     position: relative;
 }
 
-/* 代码行 */
 #write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .CodeMirror-code pre {
     padding-left: 8px;
     padding-right: 8px;
+    background: transparent !important;
+    box-shadow: none !important;
 }
 
-/* Mac-style Window Controls */
+/* 左上角三色圆点 */
 #write :is(pre.md-fences, pre[mdtype="fences"], .md-fences)::before {
     content: "";
     position: absolute;
-    top: 14px;
-    left: 14px;
-    width: 10px;
-    height: 10px;
+    top: var(--code-block-topBar-left-dots-top-position);
+    left: var(--code-block-topBar-left-dots-left-position);
+    width: var(--code-block-topBar-left-all-dot-size);
+    height: var(--code-block-topBar-left-all-dot-size);
     border-radius: 50%;
-    background: var(--code-block-topBar-left-redDot-color, #ff5f5a);
+    background: var(--code-block-topBar-left-redDot-color);
     box-shadow:
-    18px 0 0 var(--code-block-topBar-left-yellowDot-color, #ffbe2e),
-    36px 0 0 var(--code-block-topBar-left-greenDot-color, #2aca44);
+        var(--code-block-topBar-left-dots-distance) 0 0 var(--code-block-topBar-left-yellowDot-color),
+        calc(var(--code-block-topBar-left-dots-distance) * 2) 0 0 var(--code-block-topBar-left-greenDot-color);
     z-index: 2;
 }
 
-/* 代码块内 code 元素 */
+/* 块内 code 不再套行内代码的底色 */
 #write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) code {
-    background: transparent;
-    padding: 0;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
     color: inherit;
     font-weight: normal;
+    border: 0 !important;
+    border-radius: 0;
+    box-shadow: none !important;
 }
 
-/* 代码块内部背景透明 */
 #write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) :is(.CodeMirror, .CodeMirror-scroll, .CodeMirror-gutters) {
     background: transparent;
     color: inherit;
 }
 
-/* 代码块行号 */
 #write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .CodeMirror-linenumber {
-    color: var(--code-block-line-number-color, rgba(0, 0, 0, 0.45));
+    color: var(--code-block-line-number-color);
     font-family: var(--code-block-text-font), monospace;
     font-size: var(--code-block-text-size);
+    text-align: var(--code-block-line-number-align-style);
+    border-right: var(--code-block-line-number-right-border);
 }
 
-/* 代码块光标 */
 #write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .CodeMirror-cursor {
-    border-left: 2px solid rgba(129, 178, 154, 0.7);
+    border-left: var(--focus-code-line-cursor-style);
 }
 
-/* 防止嵌套多层 pre/code 造成重复背景 */
+#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) :is(.CodeMirror-line, .CodeMirror-linebackground, .CodeMirror-activeline-background) {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
 #write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) pre,
 #write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) pre code,
 #write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .cm-s-inner .CodeMirror-lines {
@@ -107,99 +101,20 @@
 
 #write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .CodeMirror-scroll {
     overflow: visible !important;
+    padding-bottom: 0 !important;
 }
 
-/* CodeMirror 内部 sizer - 确保正确边距 */
 #write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .CodeMirror-sizer {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
+    min-height: 0 !important;
 }
 
-/* CodeMirror 行容器 - 确保正确的内边距 */
 #write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .CodeMirror-lines {
-    padding: 0.6em 0 !important;
+    padding: 0 !important;
 }
 
-/* Code Syntax Highlighting */
-#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .cm-s-inner .cm-comment {
-    color: rgba(120, 130, 130, 0.55);
-}
-
-#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .cm-s-inner .cm-keyword {
-    color: #4a6fa5;
-    font-weight: 700;
-}
-
-#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .cm-s-inner .cm-string {
-    color: #5c8a6e;
-}
-
-#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .cm-s-inner .cm-number {
-    color: #c47f3c;
-}
-
-#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .cm-s-inner .cm-def {
-    color: #457b9d;
-}
-
-#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .cm-s-inner .cm-variable {
-    color: inherit;
-}
-
-#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .cm-s-inner .cm-property {
-    color: #457b9d;
-}
-
-#write :is(pre.md-fences, pre[mdtype="fences"], .md-fences) .cm-s-inner .cm-operator {
-    color: inherit;
-}
-
-/* 代码块工具栏 */
-#write pre.has-toolbar .code-toolbar {
-    position: absolute;
-    top: 10px;
-    left: 84px;
-    right: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    z-index: 3;
-    pointer-events: none;
-}
-
-#write pre.has-toolbar .code-lang {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    color: rgba(255, 255, 255, 0.7);
-    padding: 4px 10px;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.06);
-}
-
-#write pre.has-toolbar .code-copy-btn {
-    pointer-events: auto;
-    appearance: none;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.06);
-    color: rgba(255, 255, 255, 0.86);
-    font-size: 12px;
-    font-weight: 700;
-    padding: 6px 12px;
-    border-radius: 999px;
-    cursor: pointer;
-    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
-}
-
-#write pre.has-toolbar .code-copy-btn:hover {
-    transform: translateY(-1px);
-    border-color: rgba(255, 255, 255, 0.22);
-    background: rgba(255, 255, 255, 0.1);
-}
-
-/* Typora built-in code toolbar */
+/* Typora 自带代码工具栏 */
 #write :is(pre.md-fences, pre[mdtype="fences"], .md-fences, [mdtype="fences"]) .code-tooltip {
     position: absolute;
     top: 10px;
@@ -234,18 +149,18 @@
     gap: 6px;
     padding: 4px 10px;
     border-radius: 999px;
-    border: 1px solid rgba(129, 178, 154, 0.2);
-    background: rgba(255, 255, 255, 0.7);
-    color: rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--border-color);
+    background: var(--bg-color);
+    color: var(--text-color);
     line-height: 1;
 }
 
 #write :is(pre.md-fences, pre[mdtype="fences"], .md-fences, [mdtype="fences"]) .code-tooltip :is(a, button) {
     pointer-events: auto;
     appearance: none;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.06);
-    color: rgba(255, 255, 255, 0.86);
+    border: 1px solid var(--border-color);
+    background: var(--item-hover-bg-color);
+    color: var(--text-color);
     font-size: 12px;
     font-weight: 700;
     padding: 6px 12px;
@@ -257,8 +172,7 @@
 
 #write :is(pre.md-fences, pre[mdtype="fences"], .md-fences, [mdtype="fences"]) .code-tooltip :is(a, button):hover {
     transform: translateY(-1px);
-    border-color: rgba(255, 255, 255, 0.22);
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--active-file-bg-color);
 }
 
 /* 语言候选框 */

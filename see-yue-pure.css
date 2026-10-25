@@ -1,5 +1,5 @@
 /* 01 全局字体引用 */
- @import "./SeeYue/CSS/global-font.css";
+@import "./SeeYue/CSS/global-font.css";
 
 /* 02 字体引用 */
 @import "./SeeYue/CSS/fonts.css";
@@ -43,8 +43,8 @@
 /* 12.1 宽度自适应 + 滚动显示 */
 @import "./SeeYue/CSS/table/auto-scroll.css";
 
-/* 12.2 全宽 + 滚动显示 */
- @import "./SeeYue/CSS/table/full-scroll.css";
+/* 12.2 全宽 + 滚动显示（与 12.1 互斥） */
+/* @import "./SeeYue/CSS/table/full-scroll.css"; */
 
 /* 13 引用块样式 */
 @import "./SeeYue/CSS/blockquote.css";

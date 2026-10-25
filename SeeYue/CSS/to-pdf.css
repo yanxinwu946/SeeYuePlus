@@ -83,18 +83,48 @@
     break-inside: auto;
     }
 
-    /* 表格铺满正文宽。外框改用边框：box-shadow 会在断页处印到相邻页 */
+    /* 表格铺满正文宽。外框改回单元格边框：figure 的边框和表格底色
+       会在断页处被 Chrome 拉满剩余页高，上一页页脚就会多出一行空单元格。 */
     :is(figure, .md-table-fig) {
     width: auto !important;
     min-width: 0 !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
+    margin-bottom: 0 !important;
     box-shadow: none !important;
-    border: var(--table-all-cell-border);
+    border: none !important;
+    background: transparent !important;
     }
 
     table {
     width: 100%;
+    background: transparent !important;
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+    }
+
+    table tr :is(th, td) {
+    overflow: visible !important;
+    }
+
+    table tr :is(th, td) .td-span {
+    min-height: 0 !important;
+    }
+
+    table tr :is(th, td):first-child {
+    border-left: var(--table-all-cell-border) !important;
+    }
+
+    table tr :is(th, td):last-child {
+    border-right: var(--table-all-cell-border) !important;
+    }
+
+    table tr th {
+    border-top: var(--table-all-cell-border) !important;
+    }
+
+    table tbody tr:last-child td {
+    border-bottom: var(--table-all-cell-border) !important;
     }
 
     thead {
@@ -102,10 +132,16 @@
     }
 
     /* 代码块允许断开。clip 能裁掉圆角外的溢出，又不会像 auto 那样变成滚动盒把后文切掉。
-       阴影改由边框承担，断页处不再往相邻页漏一圈。 */
+       块外阴影改由边框承担，断页处不再往相邻页漏一圈。顶栏圆点和语言标跟屏幕一样留下。 */
     :is(pre.md-fences, pre[mdtype="fences"], .md-fences) {
     overflow: clip !important;
     box-shadow: none !important;
+    }
+
+    #write :is(pre.md-fences, pre[mdtype="fences"], .md-fences)::before,
+    #write pre.md-fences::after {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
     }
 
     pre {
@@ -159,7 +195,7 @@
     .footnotes-area {
     font-size: .85rem;
     font-family: "霞鹜文楷", serif;
-    color: #777 !important;
+    color: var(--end-footnote-area-text-color) !important;
     line-height: 1.5;
     }
 

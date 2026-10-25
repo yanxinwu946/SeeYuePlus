@@ -95,7 +95,7 @@ pre.md-meta-block::after {
 }
 
 .md-rawblock-tooltip {
-    font-family: "霞鹜文楷", "霞鹜文楷";
+    font-family: "霞鹜文楷";
 }
 
 /* 右上角「公式」二字 */
@@ -149,7 +149,7 @@ pre.md-meta-block::after {
 
 /* 「公式」二字右侧按钮 */
 .md-rawblock-tooltip-btn {
-    color: #000;
+    color: var(--text-color);
 }
 
 .md-rawblock-tooltip-btn:hover {
@@ -160,16 +160,14 @@ pre.md-meta-block::after {
 /* 源代码模式，行号 */
 #typora-source .CodeMirror-activeline .CodeMirror-linenumber,
 #typora-source .CodeMirror-linenumber.CodeMirror-linenumber-show {
-    font-family: "HarmonyOS";
+    font-family: var(--code-block-text-font), monospace;
 }
 
 /* mermaid 图 */
 #write.enable-diagrams > [mermaid-type=gantt].md-fences:not(.md-focus) {
     width: auto;
-    /* margin-left: calc(-49vw + 50%); */
 }
 
-/* mermaid 图表容器 - 限制缩放范围仅在代码块内 */
 #write .md-fences.md-fences-advanced.md-focus .md-diagram-panel {
     transform-origin: center center;
     overflow: auto;
@@ -177,7 +175,6 @@ pre.md-meta-block::after {
     max-height: 80vh;
 }
 
-/* mermaid 图表 - 防止放大时影响整个页面 */
 #write .md-fences[lang="mermaid"] .md-diagram-panel-preview,
 #write .md-fences[lang="mermaid"] .md-diagram-panel {
     display: block;
@@ -185,130 +182,13 @@ pre.md-meta-block::after {
     max-width: 100%;
 }
 
-/* mermaid 图表内容区域 */
 #write .md-fences[lang="mermaid"] svg {
     max-width: 100%;
     height: auto;
 }
 
-/* mermaid 图表暗色主题样式 */
-#write .md-fences[lang="mermaid"] svg .edgePath .path,
-#write .md-fences[lang="mermaid"] svg .flowchart-link {
-    stroke: #88c0d0 !important;
-    stroke-width: 2px !important;
-}
-
-/* 增强 Mermaid edgeLabel 样式 - 修复看不清的问题 */
-#write .md-fences[lang="mermaid"] .edgeLabel {
-    background-color: transparent !important;
-}
-
-/* 背景矩形 */
-#write .md-fences[lang="mermaid"] .edgeLabel rect {
-    fill: #3b4252 !important;
-    stroke: #3b4252 !important;
-}
-
-/* 文本容器及内容 */
-#write .md-fences[lang="mermaid"] .edgeLabel foreignObject,
-#write .md-fences[lang="mermaid"] .edgeLabel span,
-#write .md-fences[lang="mermaid"] .edgeLabel div,
-#write .md-fences[lang="mermaid"] .edgeLabel p {
-    background-color: #3b4252 !important;
-    color: #eceff4 !important;
-}
-
-/* 纯 SVG 文本 */
-#write .md-fences[lang="mermaid"] .edgeLabel text {
-    fill: #eceff4 !important;
-}
-
-#write .md-fences[lang="mermaid"] svg .nodeLabel,
-#write .md-fences[lang="mermaid"] svg .label {
-    color: #eceff4 !important;
-}
-
-#write .md-fences[lang="mermaid"] svg .node rect,
-#write .md-fences[lang="mermaid"] svg .node circle,
-#write .md-fences[lang="mermaid"] svg .node ellipse,
-#write .md-fences[lang="mermaid"] svg .node polygon {
-    fill: #434c5e !important;
-    stroke: #81a1c1 !important;
-    stroke-width: 2px !important;
-}
-
-#write .md-fences[lang="mermaid"] svg .cluster rect {
-    fill: #2e3440 !important;
-    stroke: #5e81ac !important;
-    stroke-width: 1px !important;
-}
-
-#write .md-fences[lang="mermaid"] svg .arrowheadPath {
-    fill: #88c0d0 !important;
-    stroke: #88c0d0 !important;
-}
-
-#write .md-fences[lang="mermaid"] svg .marker {
-    fill: #88c0d0 !important;
-    stroke: #88c0d0 !important;
-}
-
-/* 序列图样式 */
-#write .md-fences[lang="mermaid"] svg .actor {
-    fill: #434c5e !important;
-    stroke: #81a1c1 !important;
-}
-
-#write .md-fences[lang="mermaid"] svg .actor-line {
-    stroke: #5e81ac !important;
-}
-
-#write .md-fences[lang="mermaid"] svg .messageLine0,
-#write .md-fences[lang="mermaid"] svg .messageLine1 {
-    stroke: #88c0d0 !important;
-}
-
-#write .md-fences[lang="mermaid"] svg .messageText {
-    fill: #eceff4 !important;
-}
-
-#write .md-fences[lang="mermaid"] svg .labelText {
-    fill: #eceff4 !important;
-}
-
-#write .md-fences[lang="mermaid"] svg .loopText,
-#write .md-fences[lang="mermaid"] svg .loopLine {
-    fill: #eceff4 !important;
-    stroke: #81a1c1 !important;
-}
-
-#write .md-fences[lang="mermaid"] svg .note {
-    fill: #3b4252 !important;
-    stroke: #d08770 !important;
-}
-
-/* 甘特图样式 */
-#write .md-fences[lang="mermaid"] svg .grid .tick line {
-    stroke: #4c566a !important;
-}
-
-#write .md-fences[lang="mermaid"] svg .grid .tick text {
-    fill: #d8dee9 !important;
-}
-
-#write .md-fences[lang="mermaid"] svg .taskText {
-    fill: #eceff4 !important;
-}
-
-#write .md-fences[lang="mermaid"] svg .taskTextOutsideRight,
-#write .md-fences[lang="mermaid"] svg .taskTextOutsideLeft {
-    fill: #eceff4 !important;
-}
-
-#write .md-fences[lang="mermaid"] svg .section0,
-#write .md-fences[lang="mermaid"] svg .section1,
-#write .md-fences[lang="mermaid"] svg .section2 {
-    fill: #5e81ac !important;
+[lang='mermaid'] .label {
+    color: #333;
 }
 
 /* 分隔线 */
@@ -324,7 +204,7 @@ hr {
 
 /* 鼠标悬浮在按钮上弹出的悬浮框 */
 .ty-tooltip {
-    font-family: "霞鹜文楷", "霞鹜文楷";
+    font-family: "霞鹜文楷";
     background-color: var(--btn-tooltip-bg-color);
     color: var(--btn-tooltip-text-color);
     opacity: 1;
@@ -368,7 +248,7 @@ hr {
     border-radius: 0;
     font-family: "霞鹜文楷";
     font-size: 1rem;
-    font-weight: light;
+    font-weight: 300;
 }
 
 /* 弹出菜单【行 × 列】行数字显示 */
@@ -424,9 +304,13 @@ hr {
     margin-right: 0 !important;
 }
 
-/* 源代码模式，光标所在行行号 */
-/* #typora-source .CodeMirror-gutter-wrapper.CodeMirror-activeline-gutter .CodeMirror-linenumber.CodeMirror-gutter-elt {
-  color      : #ff5252;
-  font-weight: bolder;
-  opacity    : 1;
-} */
+/* 专注模式：压暗非当前段落 */
+.on-focus-mode #write > .md-end-block:not(.md-focus):not(.md-focus-container) {
+    opacity: 0.32;
+    transition: opacity 0.2s ease;
+}
+
+.on-focus-mode #write > .md-focus,
+.on-focus-mode #write > .md-focus-container {
+    opacity: 1;
+}

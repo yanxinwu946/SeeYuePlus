@@ -221,7 +221,7 @@ table tr :is(th, td) .td-span {
 
 /* 表格工具栏（三个小点） */
 .md-table-edit button.md-table-more {
-    font-family: "霞鹜文楷", "霞鹜文楷";
+    font-family: "霞鹜文楷";
     position: relative;
     left: -15px;
     padding: 3px 0;
